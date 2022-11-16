@@ -233,6 +233,11 @@ void bli_arch_set_id( void )
 		id = BLIS_ARCH_BGQ;
 		#endif
 
+		// RISC-V microarchitectures
+		#ifdef BLIS_FAMILY_RV64GV
+		id = BLIS_ARCH_RV64GV;
+		#endif
+
 		// Generic microarchitecture.
 		#ifdef BLIS_FAMILY_GENERIC
 		id = BLIS_ARCH_GENERIC;
@@ -283,6 +288,8 @@ static const char* config_name[ BLIS_NUM_ARCHS ] =
     "power9",
     "power7",
     "bgq",
+
+    "rv64gv",
 
     "generic"
 };

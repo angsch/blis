@@ -208,6 +208,13 @@ void bli_gks_init( void )
 		                                              bli_cntx_init_bgq_ind );
 #endif
 
+		// -- RISC-V architectures --------------------------------------------
+#ifdef BLIS_CONFIG_RV64GV
+		bli_gks_register_cntx( BLIS_ARCH_RV64GV,      bli_cntx_init_rv64gv,
+		                                              bli_cntx_init_rv64gv_ref,
+		                                              bli_cntx_init_rv64gv_ind );
+#endif
+
 		// -- Generic architectures --------------------------------------------
 
 #ifdef BLIS_CONFIG_GENERIC

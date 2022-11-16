@@ -46,5 +46,8 @@ power10:     power10
 power9:      power9
 bgq:         bgq
 
+# RISC-V architectures.
+rv64gv:      rv64gv
+
 # Generic architectures.
 generic:     generic
