@@ -32,10 +32,5 @@
 
 */
 
-//#ifndef BLIS_FAMILY_H
-//#define BLIS_FAMILY_H
 
-#define BLIS_SIMD_MAX_NUM_REGISTERS    32
-#define BLIS_SIMD_ALIGN_SIZE           16
-
-//#endif
+GEMM_UKR_PROT( float,    s, gemm_rv64gv_asm_16x4 )

@@ -38,7 +38,11 @@
 
 // -- REGISTER BLOCK SIZES (FOR REFERENCE KERNELS) ----------------------------
 
-// Fall through to generic sizes
+// TODO: MR should support variable vector lengths. For now,
+//       only vectors with 128 bits are supported
+
+#define BLIS_MR_s   16
+#define BLIS_NR_s   4
 
 //#endif
 
