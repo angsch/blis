@@ -234,6 +234,19 @@ void bli_arch_set_id( void )
 		#endif
 
 		// RISC-V microarchitectures
+		#ifdef BLIS_FAMILY_RV32I
+		id = BLIS_ARCH_RV32I;
+		#endif
+		#ifdef BLIS_FAMILY_RV64I
+		id = BLIS_ARCH_RV64I;
+		#endif
+		#ifdef BLIS_FAMILY_RV32IV
+		id = BLIS_ARCH_RV32IV;
+		#endif
+		#ifdef BLIS_FAMILY_RV64IV
+		id = BLIS_ARCH_RV64IV;
+		#endif
+
 		#ifdef BLIS_FAMILY_RV64GV
 		id = BLIS_ARCH_RV64GV;
 		#endif
@@ -289,6 +302,10 @@ static const char* config_name[ BLIS_NUM_ARCHS ] =
     "power7",
     "bgq",
 
+    "rv32i",
+    "rv64i",
+    "rv32iv",
+    "rv64iv",
     "rv64gv",
 
     "generic"

@@ -209,6 +209,31 @@ void bli_gks_init( void )
 #endif
 
 		// -- RISC-V architectures --------------------------------------------
+
+#ifdef BLIS_CONFIG_RV32I
+		bli_gks_register_cntx( BLIS_ARCH_RV32I,       bli_cntx_init_rv32i,
+		                                              bli_cntx_init_rv32i_ref,
+		                                              bli_cntx_init_rv32i_ind );
+#endif
+
+#ifdef BLIS_CONFIG_RV64I
+		bli_gks_register_cntx( BLIS_ARCH_RV64I,       bli_cntx_init_rv64i,
+		                                              bli_cntx_init_rv64i_ref,
+		                                              bli_cntx_init_rv64i_ind );
+#endif
+
+#ifdef BLIS_CONFIG_RV32IV
+		bli_gks_register_cntx( BLIS_ARCH_RV32IV,      bli_cntx_init_rv32iv,
+		                                              bli_cntx_init_rv32iv_ref,
+		                                              bli_cntx_init_rv32iv_ind );
+#endif
+
+#ifdef BLIS_CONFIG_RV64IV
+		bli_gks_register_cntx( BLIS_ARCH_RV64IV,      bli_cntx_init_rv64iv,
+		                                              bli_cntx_init_rv64iv_ref,
+		                                              bli_cntx_init_rv64iv_ind );
+#endif
+
 #ifdef BLIS_CONFIG_RV64GV
 		bli_gks_register_cntx( BLIS_ARCH_RV64GV,      bli_cntx_init_rv64gv,
 		                                              bli_cntx_init_rv64gv_ref,

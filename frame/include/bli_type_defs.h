@@ -966,6 +966,10 @@ typedef enum
 	BLIS_ARCH_BGQ,
 
 	// RISC-V
+	BLIS_ARCH_RV32I,
+	BLIS_ARCH_RV64I,
+	BLIS_ARCH_RV32IV,
+	BLIS_ARCH_RV64IV,
 	BLIS_ARCH_RV64GV,
 
 	// Generic architecture/configuration
