@@ -79,7 +79,7 @@ void bli_cntx_init_rv64iv( cntx_t* cntx )
 	//                                              s        d      c      z
 	bli_blksz_init_easy( &blkszs[ BLIS_MR ],     mr_s,    mr_d,    -1,    -1 );
 	bli_blksz_init_easy( &blkszs[ BLIS_NR ],        4,       4,    -1,    -1 );
-	bli_blksz_init_easy( &blkszs[ BLIS_MC ],  20*mr_s, 20*mr_s,    -1,    -1 );
+	bli_blksz_init_easy( &blkszs[ BLIS_MC ],  20*mr_s, 20*mr_d,    -1,    -1 );
 	bli_blksz_init_easy( &blkszs[ BLIS_KC ],      640,     320,    -1,    -1 );
 	bli_blksz_init_easy( &blkszs[ BLIS_NC ],     3072,    3072,    -1,    -1 );
 
