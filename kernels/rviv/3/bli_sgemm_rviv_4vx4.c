@@ -33,17 +33,17 @@
 
 */
 #include "blis.h"
-#include "bli_rviv_utils.h"
+
 
 extern
 void bli_sgemm_rviv_asm_4vx4
     (
-    uint64_t            k,
-    float*     restrict alpha,
-    float*     restrict a,
-    float*     restrict b,
-    float*     restrict beta,
-    float*     restrict c, uint64_t rs_c, uint64_t cs_c
+      uint64_t             k,
+      float*     restrict alpha,
+      float*     restrict a,
+      float*     restrict b,
+      float*     restrict beta,
+      float*     restrict c, uint64_t rs_c, uint64_t cs_c
     );
 
 void bli_sgemm_rviv_4vx4
