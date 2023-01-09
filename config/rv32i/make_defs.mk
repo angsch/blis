@@ -55,7 +55,7 @@ CDBGFLAGS      := -g
 endif
 
 ifeq ($(DEBUG_TYPE),noopt)
-COPTFLAGS      := -O0
+COPTFLAGS      := -O0 -march=rv32i
 else
 COPTFLAGS      := -O2 -march=rv32i
 endif

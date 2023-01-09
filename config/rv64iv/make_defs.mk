@@ -55,9 +55,9 @@ CDBGFLAGS      := -g
 endif
 
 ifeq ($(DEBUG_TYPE),noopt)
-COPTFLAGS      := -O0
+COPTFLAGS      := -O0 -march=rv64iv
 else
-COPTFLAGS      := -O2 -ftree-vectorize -march=rv64iav
+COPTFLAGS      := -O2 -ftree-vectorize -march=rv64iv
 endif
 
 # Flags specific to optimized kernels.
