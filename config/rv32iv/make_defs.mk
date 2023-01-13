@@ -57,7 +57,7 @@ endif
 ifeq ($(DEBUG_TYPE),noopt)
 COPTFLAGS      := -O0 -march=rv32iv
 else
-COPTFLAGS      := -O2 -ftree-vectorize -march=rv32iv
+COPTFLAGS      := -O0 -march=rv32iv
 endif
 
 # Flags specific to optimized kernels.
@@ -75,7 +75,9 @@ endif
 # Flags specific to reference kernels.
 CROPTFLAGS     := $(CKOPTFLAGS)
 ifeq ($(CC_VENDOR),gcc)
-CRVECFLAGS     := $(CKVECFLAGS) -funsafe-math-optimizations -ffp-contract=fast
+# Lower compiler optimization to -O1. At -O3, gcc version 12.0.1 20220505
+# computes offsets for the matrix ab in the ref gemm kernel incorrectly.
+CRVECFLAGS     := $(CKVECFLAGS) -O1
 else
 ifeq ($(CC_VENDOR),clang)
 CRVECFLAGS     := $(CKVECFLAGS) -funsafe-math-optimizations -ffp-contract=fast

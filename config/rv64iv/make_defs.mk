@@ -45,7 +45,7 @@ THIS_CONFIG    := rv64iv
 # NOTE: The build system will append these variables with various
 # general-purpose/configuration-agnostic flags in common.mk. You
 # may specify additional flags here as needed.
-CPPROCFLAGS    := -mabi=lp64d
+CPPROCFLAGS    := -mabi=lp64d -D_RV64
 CMISCFLAGS     :=
 CPICFLAGS      :=
 CWARNFLAGS     := -Wall -Wno-unused-function -Wfatal-errors
