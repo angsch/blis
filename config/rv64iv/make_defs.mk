@@ -57,6 +57,9 @@ endif
 ifeq ($(DEBUG_TYPE),noopt)
 COPTFLAGS      := -O0 -march=rv64iv
 else
+# The latest build hits an 'internal compiler error'
+# when compiling the reference gemm kernels. Workout
+# via -march=rv64imv
 COPTFLAGS      := -O2 -ftree-vectorize -march=rv64iv
 endif
 
@@ -75,7 +78,8 @@ endif
 # Flags specific to reference kernels.
 CROPTFLAGS     := $(CKOPTFLAGS)
 ifeq ($(CC_VENDOR),gcc)
-CRVECFLAGS     := $(CKVECFLAGS) -funsafe-math-optimizations -ffp-contract=fast
+# Lower compiler optimization. cinvscalv fails at -O1
+CRVECFLAGS     := $(CKVECFLAGS) -O0
 else
 ifeq ($(CC_VENDOR),clang)
 CRVECFLAGS     := $(CKVECFLAGS) -funsafe-math-optimizations -ffp-contract=fast
