@@ -95,21 +95,19 @@ void bli_sgemm_rv64gv_asm_16x4
 			ab[i] = 0;
 		}
 
-		if (*alpha) {
-			for (dim_t l = 0; l < k; ++l) {
-				for (dim_t j = 0; j < 4; j++) {
-					for (dim_t i = 0; i < 16; ++i) {
-						float bj = b[j];
-						float ai = a[i];
-						ab[i + j * 16] += ai * bj;
-					}
+		for (dim_t l = 0; l < k; ++l) {
+			for (dim_t j = 0; j < 4; j++) {
+				for (dim_t i = 0; i < 16; ++i) {
+					float bj = b[j];
+					float ai = a[i];
+					ab[i + j * 16] += ai * bj;
 				}
-				a += 16;
-				b += 4;
 			}
-			for (dim_t i = 0; i < 16 * 4; i++) {
-				ab[i] = ab[i] * (*alpha);
-			}
+			a += 16;
+			b += 4;
+		}
+		for (dim_t i = 0; i < 16 * 4; i++) {
+			ab[i] = ab[i] * (*alpha);
 		}
 
 		if (*beta) {
