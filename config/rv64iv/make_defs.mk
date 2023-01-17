@@ -45,8 +45,8 @@ THIS_CONFIG    := rv64iv
 # NOTE: The build system will append these variables with various
 # general-purpose/configuration-agnostic flags in common.mk. You
 # may specify additional flags here as needed.
-CPPROCFLAGS    := -mabi=lp64d -D_RV64
-CMISCFLAGS     :=
+CPPROCFLAGS    := -D_RV64
+CMISCFLAGS     := -march=rv64iv -mabi=lp64d
 CPICFLAGS      :=
 CWARNFLAGS     := -Wall -Wno-unused-function -Wfatal-errors
 
@@ -55,12 +55,12 @@ CDBGFLAGS      := -g
 endif
 
 ifeq ($(DEBUG_TYPE),noopt)
-COPTFLAGS      := -O0 -march=rv64iv
+COPTFLAGS      := -O0
 else
 # The latest build hits an 'internal compiler error'
 # when compiling the reference gemm kernels. Workout
 # via -march=rv64imv
-COPTFLAGS      := -O2 -ftree-vectorize -march=rv64iv
+COPTFLAGS      := -O2 -ftree-vectorize
 endif
 
 # Flags specific to optimized kernels.

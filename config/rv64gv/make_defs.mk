@@ -45,8 +45,8 @@ THIS_CONFIG    := rv64gv
 # NOTE: The build system will append these variables with various
 # general-purpose/configuration-agnostic flags in common.mk. You
 # may specify additional flags here as needed.
-CPPROCFLAGS    := -mabi=lp64d
-CMISCFLAGS     :=
+CPPROCFLAGS    :=
+CMISCFLAGS     := -march=rv64gv -mabi=lp64d
 CPICFLAGS      :=
 CWARNFLAGS     := -Wall -Wno-unused-function -Wfatal-errors
 
@@ -57,7 +57,7 @@ endif
 ifeq ($(DEBUG_TYPE),noopt)
 COPTFLAGS      := -O0
 else
-COPTFLAGS      := -O2 -ftree-vectorize -march=rv64gv
+COPTFLAGS      := -O2 -ftree-vectorize
 endif
 
 # Flags specific to optimized kernels.

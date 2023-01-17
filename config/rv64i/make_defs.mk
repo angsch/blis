@@ -45,8 +45,8 @@ THIS_CONFIG    := rv64i
 # NOTE: The build system will append these variables with various
 # general-purpose/configuration-agnostic flags in common.mk. You
 # may specify additional flags here as needed.
-CPPROCFLAGS    := -mabi=lp64
-CMISCFLAGS     :=
+CPPROCFLAGS    :=
+CMISCFLAGS     := -march=rv64i -mabi=lp64
 CPICFLAGS      :=
 CWARNFLAGS     := -Wall -Wno-unused-function -Wfatal-errors
 
@@ -55,9 +55,9 @@ CDBGFLAGS      := -g
 endif
 
 ifeq ($(DEBUG_TYPE),noopt)
-COPTFLAGS      := -O0 -march=rv64i
+COPTFLAGS      := -O0
 else
-COPTFLAGS      := -O2 -march=rv64i
+COPTFLAGS      := -O2
 endif
 
 # Flags specific to optimized kernels.
