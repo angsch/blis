@@ -33,17 +33,19 @@
 
 */
 #include "blis.h"
-
+#include <assert.h>
 
 extern
 void bli_zgemm_rviv_asm_4vx4
     (
-      uintptr_t              k,
+      dim_t                  k,
       dcomplex*     restrict alpha,
       dcomplex*     restrict a,
       dcomplex*     restrict b,
       dcomplex*     restrict beta,
-      dcomplex*     restrict c, uintptr_t rs_c, uintptr_t cs_c
+      dcomplex*     restrict c,
+      inc_t                  rs_c,
+      inc_t                  cs_c
     );
 
 
@@ -56,23 +58,22 @@ void bli_zgemm_rviv_4vx4
        dcomplex*  restrict a,
        dcomplex*  restrict b,
        dcomplex*  restrict beta,
-       dcomplex*  restrict c, inc_t rs_c0, inc_t cs_c0,
+       dcomplex*  restrict c,
+       inc_t               rs_c,
+       inc_t               cs_c,
        auxinfo_t*          data,
        cntx_t*             cntx
      )
 {
-    // Use local copy in case dim_t has a different size than expected in the assembly kernel
-    uintptr_t _k     = k;
-    uintptr_t rs_c   = rs_c0;
-    uintptr_t cs_c   = cs_c0;
-
     // Extract vector-length dependent mr, nr that are fixed at configure time.
     const inc_t mr = bli_cntx_get_blksz_def_dt( BLIS_DCOMPLEX, BLIS_MR, cntx );
     const inc_t nr = 4;
 
     GEMM_UKR_SETUP_CT( z, mr, nr, false );
 
-    bli_zgemm_rviv_asm_4vx4(_k, alpha, a, b, beta, c, rs_c, cs_c);
+    assert( rs_c == 1 );
+
+    bli_zgemm_rviv_asm_4vx4( k, alpha, a, b, beta, c, rs_c, cs_c );
 
     GEMM_UKR_FLUSH_CT( z );
 }
