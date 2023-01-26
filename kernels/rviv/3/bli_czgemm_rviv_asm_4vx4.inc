@@ -2,8 +2,8 @@
     .align      2
     .global     REALNAME
 
-// void REALNAME(dim_t k, void* alpha, void* a, void* b,
-//               void* beta, void* c, inc_t rs_c, inc_t cs_c)
+// void REALNAME(intptr_t k, void* alpha, void* a, void* b,
+//               void* beta, void* c, intptr_t rs_c, intptr_t cs_c)
 //
 // register arguments:
 // a0   k
@@ -394,7 +394,6 @@ LOOP_UNROLL_4: // loop_counter >= 4
     FLOAD B03_im, 7*REALSIZE(B_row_ptr)
 
     j LOOP_UNROLL_4
-
 
 TAIL_UNROLL_2: // loop_counter <= 3
     li tmp, 1

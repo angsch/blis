@@ -1,8 +1,8 @@
     .text
     .global     REALNAME
 
-// void REALNAME(dim_t k, void* alpha, void* a, void* b,
-//               void* beta, void* c, inc_t rs_c, inc_t cs_c)
+// void REALNAME(intptr_t k, void* alpha, void* a, void* b,
+//               void* beta, void* c, intptr_t rs_c, intptr_t cs_c)
 //
 // register arguments:
 // a0   k
