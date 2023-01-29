@@ -64,7 +64,8 @@ void bli_dgemm_rviv_4vx4
 {
     // The assembly kernels always take native machine-sized integer arguments.
     // dim_t and inc_t are normally defined as being machine-sized. If larger, assert.
-    assert( sizeof(dim_t) <= sizeof(intptr_t) && sizeof(inc_t) <= sizeof(intptr_t) );
+    bli_static_assert( sizeof(dim_t) <= sizeof(intptr_t) &&
+                       sizeof(inc_t) <= sizeof(intptr_t) );
 
     // Extract vector-length dependent mr, nr that are fixed at configure time.
     const inc_t mr = bli_cntx_get_blksz_def_dt( BLIS_DOUBLE, BLIS_MR, cntx );
