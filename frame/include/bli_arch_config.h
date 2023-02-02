@@ -362,4 +362,3 @@ CNTX_INIT_PROTS( generic )
 #endif
 
 #endif
-

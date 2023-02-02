@@ -71,7 +71,7 @@ void bli_zgemm_rviv_4vx4
     GEMM_UKR_SETUP_CT( z, mr, nr, false );
 
     bli_zgemm_rviv_asm_4vx4( k, alpha, a, b, beta, c,
-							 rs_c * get_vlenb(), cs_c * sizeof(dcomplex) );
+                             rs_c * get_vlenb(), cs_c * sizeof(dcomplex) );
 
     GEMM_UKR_FLUSH_CT( z );
 }

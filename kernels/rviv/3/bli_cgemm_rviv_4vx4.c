@@ -70,7 +70,7 @@ void bli_cgemm_rviv_4vx4
     GEMM_UKR_SETUP_CT( c, mr, nr, false );
 
     bli_cgemm_rviv_asm_4vx4( k, alpha, a, b, beta, c,
-							 rs_c * get_vlenb(), cs_c * sizeof(scomplex) );
+                             rs_c * get_vlenb(), cs_c * sizeof(scomplex) );
 
     GEMM_UKR_FLUSH_CT( c );
 }

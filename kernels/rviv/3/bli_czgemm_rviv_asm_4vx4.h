@@ -150,7 +150,7 @@ REALNAME:
 
     csrr s0, vlenb
     vsetvli zero, zero, VTYPE, m1, ta, ma
-	FZERO(fzero)
+    FZERO(fzero)
 
     // Set up pointers
     add C01_ptr, C00_ptr, cs_c
@@ -185,7 +185,7 @@ REALNAME:
     vxor.vv AB13_im, AB13_im, AB13_im
 
     // Handle k == 0
-	beqz loop_counter, MULTIPLYBETA
+    beqz loop_counter, MULTIPLYBETA
 
     li tmp, 3
     ble loop_counter, tmp, TAIL_UNROLL_2

@@ -57,31 +57,31 @@
 
 #define bli_fminabs( a, b ) \
 \
-	bli_fmin( bli_fabs( a ), \
-	          bli_fabs( b ) )
+    bli_fmin( bli_fabs( a ), \
+              bli_fabs( b ) )
 
 #define bli_fmaxabs( a, b ) \
 \
-	bli_fmax( bli_fabs( a ), \
-	          bli_fabs( b ) )
+    bli_fmax( bli_fabs( a ), \
+              bli_fabs( b ) )
 
 // round
 
 BLIS_INLINE double bli_round( double a )
 {
-	return round( a );
+    return round( a );
 }
 
 // round_to_mult
 
 BLIS_INLINE guint_t bli_round_to_mult( guint_t val, guint_t mult )
 {
-	return ( guint_t )
-	       ( ( ( ( guint_t )val +
-	             ( guint_t )mult / 2
-	           ) / mult
-	         ) * mult
-	       );
+    return ( guint_t )
+           ( ( ( ( guint_t )val +
+                 ( guint_t )mult / 2
+               ) / mult
+             ) * mult
+           );
 }
 
 // isnan, isinf
@@ -96,38 +96,38 @@ BLIS_INLINE guint_t bli_round_to_mult( guint_t val, guint_t mult )
 
 BLIS_INLINE bool bli_is_odd( gint_t a )
 {
-	return ( bool )( a % 2 == 1 );
+    return ( bool )( a % 2 == 1 );
 }
 
 BLIS_INLINE bool bli_is_even( gint_t a )
 {
-	return ( bool )( a % 2 == 0 );
+    return ( bool )( a % 2 == 0 );
 }
 
 // swap_dims
 
 BLIS_INLINE void bli_swap_dims( dim_t* dim1, dim_t* dim2 )
 {
-	dim_t temp = *dim1;
-	*dim1 = *dim2;
-	*dim2 = temp;
+    dim_t temp = *dim1;
+    *dim1 = *dim2;
+    *dim2 = temp;
 }
 
 // swap_incs
 
 BLIS_INLINE void bli_swap_incs( inc_t* inc1, inc_t* inc2 )
 {
-	inc_t temp = *inc1;
-	*inc1 = *inc2;
-	*inc2 = temp;
+    inc_t temp = *inc1;
+    *inc1 = *inc2;
+    *inc2 = temp;
 }
 
 // toggle_bool
 
 BLIS_INLINE void bli_toggle_bool( bool* b )
 {
-	if ( *b == TRUE ) *b = FALSE;
-	else              *b = TRUE;
+    if ( *b == TRUE ) *b = FALSE;
+    else              *b = TRUE;
 }
 
 // return datatype for char

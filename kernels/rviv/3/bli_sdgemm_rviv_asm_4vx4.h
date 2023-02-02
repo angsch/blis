@@ -119,7 +119,7 @@ REALNAME:
     #include "rviv_save_registers.h"
 
     csrr s0, vlenb
-	FZERO(fzero)
+    FZERO(fzero)
     vsetvli zero, zero, VTYPE, m1, ta, ma
 
     // Set up pointers
@@ -155,8 +155,8 @@ REALNAME:
     vxor.vv AB32, AB32, AB32
     vxor.vv AB33, AB33, AB33
 
-	// Handle k == 0
-	beqz loop_counter, MULTIPLYBETA
+    // Handle k == 0
+    beqz loop_counter, MULTIPLYBETA
 
     li tmp, 1
     ble loop_counter, tmp, TAIL

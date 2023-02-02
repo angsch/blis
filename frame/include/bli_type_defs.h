@@ -135,39 +135,39 @@ typedef uint32_t objbits_t;  // object information bit field
 
 #ifdef BLIS_ENABLE_C99_COMPLEX
 
-	#if __STDC_VERSION__ >= 199901L
-		#include <complex.h>
+    #if __STDC_VERSION__ >= 199901L
+        #include <complex.h>
 
-		// Typedef official complex types to BLIS complex type names.
-		typedef  float complex scomplex;
-		typedef double complex dcomplex;
-	#else
-		#error "Configuration requested C99 complex types, but C99 does not appear to be supported."
-	#endif
+        // Typedef official complex types to BLIS complex type names.
+        typedef  float complex scomplex;
+        typedef double complex dcomplex;
+    #else
+        #error "Configuration requested C99 complex types, but C99 does not appear to be supported."
+    #endif
 
 #else // ifndef BLIS_ENABLE_C99_COMPLEX
 
-	// This cpp guard provides a temporary hack to allow libflame
-	// interoperability with BLIS.
-	#ifndef _DEFINED_SCOMPLEX
-	#define _DEFINED_SCOMPLEX
-	typedef struct scomplex
-	{
-		float  real;
-		float  imag;
-	} scomplex;
-	#endif
+    // This cpp guard provides a temporary hack to allow libflame
+    // interoperability with BLIS.
+    #ifndef _DEFINED_SCOMPLEX
+    #define _DEFINED_SCOMPLEX
+    typedef struct scomplex
+    {
+        float  real;
+        float  imag;
+    } scomplex;
+    #endif
 
-	// This cpp guard provides a temporary hack to allow libflame
-	// interoperability with BLIS.
-	#ifndef _DEFINED_DCOMPLEX
-	#define _DEFINED_DCOMPLEX
-	typedef struct dcomplex
-	{
-		double real;
-		double imag;
-	} dcomplex;
-	#endif
+    // This cpp guard provides a temporary hack to allow libflame
+    // interoperability with BLIS.
+    #ifndef _DEFINED_DCOMPLEX
+    #define _DEFINED_DCOMPLEX
+    typedef struct dcomplex
+    {
+        double real;
+        double imag;
+    } dcomplex;
+    #endif
 
 #endif // BLIS_ENABLE_C99_COMPLEX
 
@@ -423,50 +423,50 @@ typedef void  (*free_ft)  ( void*  p    );
 
 typedef enum
 {
-	BLIS_NO_TRANSPOSE      = 0x0,
-	BLIS_TRANSPOSE         = BLIS_BITVAL_TRANS,
-	BLIS_CONJ_NO_TRANSPOSE = BLIS_BITVAL_CONJ,
-	BLIS_CONJ_TRANSPOSE    = BLIS_BITVAL_CONJ_TRANS
+    BLIS_NO_TRANSPOSE      = 0x0,
+    BLIS_TRANSPOSE         = BLIS_BITVAL_TRANS,
+    BLIS_CONJ_NO_TRANSPOSE = BLIS_BITVAL_CONJ,
+    BLIS_CONJ_TRANSPOSE    = BLIS_BITVAL_CONJ_TRANS
 } trans_t;
 
 typedef enum
 {
-	BLIS_NO_CONJUGATE      = 0x0,
-	BLIS_CONJUGATE         = BLIS_BITVAL_CONJ
+    BLIS_NO_CONJUGATE      = 0x0,
+    BLIS_CONJUGATE         = BLIS_BITVAL_CONJ
 } conj_t;
 
 typedef enum
 {
-	BLIS_ZEROS             = BLIS_BITVAL_ZEROS,
-	BLIS_LOWER             = BLIS_BITVAL_LOWER,
-	BLIS_UPPER             = BLIS_BITVAL_UPPER,
-	BLIS_DENSE             = BLIS_BITVAL_DENSE
+    BLIS_ZEROS             = BLIS_BITVAL_ZEROS,
+    BLIS_LOWER             = BLIS_BITVAL_LOWER,
+    BLIS_UPPER             = BLIS_BITVAL_UPPER,
+    BLIS_DENSE             = BLIS_BITVAL_DENSE
 } uplo_t;
 
 typedef enum
 {
-	BLIS_LEFT              = 0x0,
-	BLIS_RIGHT
+    BLIS_LEFT              = 0x0,
+    BLIS_RIGHT
 } side_t;
 
 typedef enum
 {
-	BLIS_NONUNIT_DIAG      = 0x0,
-	BLIS_UNIT_DIAG         = BLIS_BITVAL_UNIT_DIAG
+    BLIS_NONUNIT_DIAG      = 0x0,
+    BLIS_UNIT_DIAG         = BLIS_BITVAL_UNIT_DIAG
 } diag_t;
 
 typedef enum
 {
-	BLIS_NO_INVERT_DIAG    = 0x0,
-	BLIS_INVERT_DIAG       = BLIS_BITVAL_INVERT_DIAG
+    BLIS_NO_INVERT_DIAG    = 0x0,
+    BLIS_INVERT_DIAG       = BLIS_BITVAL_INVERT_DIAG
 } invdiag_t;
 
 typedef enum
 {
-	BLIS_GENERAL           = BLIS_BITVAL_GENERAL,
-	BLIS_HERMITIAN         = BLIS_BITVAL_HERMITIAN,
-	BLIS_SYMMETRIC         = BLIS_BITVAL_SYMMETRIC,
-	BLIS_TRIANGULAR        = BLIS_BITVAL_TRIANGULAR
+    BLIS_GENERAL           = BLIS_BITVAL_GENERAL,
+    BLIS_HERMITIAN         = BLIS_BITVAL_HERMITIAN,
+    BLIS_SYMMETRIC         = BLIS_BITVAL_SYMMETRIC,
+    BLIS_TRIANGULAR        = BLIS_BITVAL_TRIANGULAR
 } struc_t;
 
 
@@ -474,26 +474,26 @@ typedef enum
 
 typedef enum
 {
-	BLIS_FLOAT             = BLIS_BITVAL_FLOAT_TYPE,
-	BLIS_DOUBLE            = BLIS_BITVAL_DOUBLE_TYPE,
-	BLIS_SCOMPLEX          = BLIS_BITVAL_SCOMPLEX_TYPE,
-	BLIS_DCOMPLEX          = BLIS_BITVAL_DCOMPLEX_TYPE,
-	BLIS_INT               = BLIS_BITVAL_INT_TYPE,
-	BLIS_CONSTANT          = BLIS_BITVAL_CONST_TYPE,
-	BLIS_DT_LO             = BLIS_FLOAT,
-	BLIS_DT_HI             = BLIS_DCOMPLEX
+    BLIS_FLOAT             = BLIS_BITVAL_FLOAT_TYPE,
+    BLIS_DOUBLE            = BLIS_BITVAL_DOUBLE_TYPE,
+    BLIS_SCOMPLEX          = BLIS_BITVAL_SCOMPLEX_TYPE,
+    BLIS_DCOMPLEX          = BLIS_BITVAL_DCOMPLEX_TYPE,
+    BLIS_INT               = BLIS_BITVAL_INT_TYPE,
+    BLIS_CONSTANT          = BLIS_BITVAL_CONST_TYPE,
+    BLIS_DT_LO             = BLIS_FLOAT,
+    BLIS_DT_HI             = BLIS_DCOMPLEX
 } num_t;
 
 typedef enum
 {
-	BLIS_REAL              = BLIS_BITVAL_REAL,
-	BLIS_COMPLEX           = BLIS_BITVAL_COMPLEX
+    BLIS_REAL              = BLIS_BITVAL_REAL,
+    BLIS_COMPLEX           = BLIS_BITVAL_COMPLEX
 } dom_t;
 
 typedef enum
 {
-	BLIS_SINGLE_PREC       = BLIS_BITVAL_SINGLE_PREC,
-	BLIS_DOUBLE_PREC       = BLIS_BITVAL_DOUBLE_PREC
+    BLIS_SINGLE_PREC       = BLIS_BITVAL_SINGLE_PREC,
+    BLIS_DOUBLE_PREC       = BLIS_BITVAL_DOUBLE_PREC
 } prec_t;
 
 
@@ -501,17 +501,17 @@ typedef enum
 
 typedef enum
 {
-	BLIS_NOT_PACKED            = BLIS_BITVAL_NOT_PACKED,
-	BLIS_PACKED_UNSPEC         = BLIS_BITVAL_PACKED_UNSPEC,
-	BLIS_PACKED_VECTOR         = BLIS_BITVAL_PACKED_UNSPEC,
-	BLIS_PACKED_ROWS           = BLIS_BITVAL_PACKED_ROWS,
-	BLIS_PACKED_COLUMNS        = BLIS_BITVAL_PACKED_COLUMNS,
-	BLIS_PACKED_ROW_PANELS     = BLIS_BITVAL_PACKED_ROW_PANELS,
-	BLIS_PACKED_COL_PANELS     = BLIS_BITVAL_PACKED_COL_PANELS,
-	BLIS_PACKED_ROW_PANELS_1E  = BLIS_BITVAL_PACKED_ROW_PANELS_1E,
-	BLIS_PACKED_COL_PANELS_1E  = BLIS_BITVAL_PACKED_COL_PANELS_1E,
-	BLIS_PACKED_ROW_PANELS_1R  = BLIS_BITVAL_PACKED_ROW_PANELS_1R,
-	BLIS_PACKED_COL_PANELS_1R  = BLIS_BITVAL_PACKED_COL_PANELS_1R
+    BLIS_NOT_PACKED            = BLIS_BITVAL_NOT_PACKED,
+    BLIS_PACKED_UNSPEC         = BLIS_BITVAL_PACKED_UNSPEC,
+    BLIS_PACKED_VECTOR         = BLIS_BITVAL_PACKED_UNSPEC,
+    BLIS_PACKED_ROWS           = BLIS_BITVAL_PACKED_ROWS,
+    BLIS_PACKED_COLUMNS        = BLIS_BITVAL_PACKED_COLUMNS,
+    BLIS_PACKED_ROW_PANELS     = BLIS_BITVAL_PACKED_ROW_PANELS,
+    BLIS_PACKED_COL_PANELS     = BLIS_BITVAL_PACKED_COL_PANELS,
+    BLIS_PACKED_ROW_PANELS_1E  = BLIS_BITVAL_PACKED_ROW_PANELS_1E,
+    BLIS_PACKED_COL_PANELS_1E  = BLIS_BITVAL_PACKED_COL_PANELS_1E,
+    BLIS_PACKED_ROW_PANELS_1R  = BLIS_BITVAL_PACKED_ROW_PANELS_1R,
+    BLIS_PACKED_COL_PANELS_1R  = BLIS_BITVAL_PACKED_COL_PANELS_1R
 } pack_t;
 
 // We combine row and column packing into one "type", and we start
@@ -523,11 +523,11 @@ typedef enum
 
 typedef enum
 {
-	BLIS_PACK_FWD_IF_UPPER = BLIS_BITVAL_PACK_FWD_IF_UPPER,
-	BLIS_PACK_REV_IF_UPPER = BLIS_BITVAL_PACK_REV_IF_UPPER,
+    BLIS_PACK_FWD_IF_UPPER = BLIS_BITVAL_PACK_FWD_IF_UPPER,
+    BLIS_PACK_REV_IF_UPPER = BLIS_BITVAL_PACK_REV_IF_UPPER,
 
-	BLIS_PACK_FWD_IF_LOWER = BLIS_BITVAL_PACK_FWD_IF_LOWER,
-	BLIS_PACK_REV_IF_LOWER = BLIS_BITVAL_PACK_REV_IF_LOWER
+    BLIS_PACK_FWD_IF_LOWER = BLIS_BITVAL_PACK_FWD_IF_LOWER,
+    BLIS_PACK_REV_IF_LOWER = BLIS_BITVAL_PACK_REV_IF_LOWER
 } packord_t;
 
 
@@ -535,10 +535,10 @@ typedef enum
 
 typedef enum
 {
-	BLIS_BUFFER_FOR_A_BLOCK = BLIS_BITVAL_BUFFER_FOR_A_BLOCK,
-	BLIS_BUFFER_FOR_B_PANEL = BLIS_BITVAL_BUFFER_FOR_B_PANEL,
-	BLIS_BUFFER_FOR_C_PANEL = BLIS_BITVAL_BUFFER_FOR_C_PANEL,
-	BLIS_BUFFER_FOR_GEN_USE = BLIS_BITVAL_BUFFER_FOR_GEN_USE
+    BLIS_BUFFER_FOR_A_BLOCK = BLIS_BITVAL_BUFFER_FOR_A_BLOCK,
+    BLIS_BUFFER_FOR_B_PANEL = BLIS_BITVAL_BUFFER_FOR_B_PANEL,
+    BLIS_BUFFER_FOR_C_PANEL = BLIS_BITVAL_BUFFER_FOR_C_PANEL,
+    BLIS_BUFFER_FOR_GEN_USE = BLIS_BITVAL_BUFFER_FOR_GEN_USE
 } packbuf_t;
 
 
@@ -546,8 +546,8 @@ typedef enum
 
 typedef enum
 {
-	BLIS_FWD,
-	BLIS_BWD
+    BLIS_FWD,
+    BLIS_BWD
 } dir_t;
 
 
@@ -555,22 +555,22 @@ typedef enum
 
 typedef enum
 {
-	BLIS_SUBPART0,
-	BLIS_SUBPART1,
-	BLIS_SUBPART2,
-	BLIS_SUBPART1AND0,
-	BLIS_SUBPART1AND2,
-	BLIS_SUBPART1A,
-	BLIS_SUBPART1B,
-	BLIS_SUBPART00,
-	BLIS_SUBPART10,
-	BLIS_SUBPART20,
-	BLIS_SUBPART01,
-	BLIS_SUBPART11,
-	BLIS_SUBPART21,
-	BLIS_SUBPART02,
-	BLIS_SUBPART12,
-	BLIS_SUBPART22
+    BLIS_SUBPART0,
+    BLIS_SUBPART1,
+    BLIS_SUBPART2,
+    BLIS_SUBPART1AND0,
+    BLIS_SUBPART1AND2,
+    BLIS_SUBPART1A,
+    BLIS_SUBPART1B,
+    BLIS_SUBPART00,
+    BLIS_SUBPART10,
+    BLIS_SUBPART20,
+    BLIS_SUBPART01,
+    BLIS_SUBPART11,
+    BLIS_SUBPART21,
+    BLIS_SUBPART02,
+    BLIS_SUBPART12,
+    BLIS_SUBPART22
 } subpart_t;
 
 
@@ -578,8 +578,8 @@ typedef enum
 
 typedef enum
 {
-	BLIS_M = 0,
-	BLIS_N = 1
+    BLIS_M = 0,
+    BLIS_N = 1
 } mdim_t;
 
 
@@ -587,17 +587,17 @@ typedef enum
 
 typedef enum
 {
-	BLIS_MACH_EPS = 0,
-	BLIS_MACH_SFMIN,
-	BLIS_MACH_BASE,
-	BLIS_MACH_PREC,
-	BLIS_MACH_NDIGMANT,
-	BLIS_MACH_RND,
-	BLIS_MACH_EMIN,
-	BLIS_MACH_RMIN,
-	BLIS_MACH_EMAX,
-	BLIS_MACH_RMAX,
-	BLIS_MACH_EPS2
+    BLIS_MACH_EPS = 0,
+    BLIS_MACH_SFMIN,
+    BLIS_MACH_BASE,
+    BLIS_MACH_PREC,
+    BLIS_MACH_NDIGMANT,
+    BLIS_MACH_RND,
+    BLIS_MACH_EMIN,
+    BLIS_MACH_RMIN,
+    BLIS_MACH_EMAX,
+    BLIS_MACH_RMAX,
+    BLIS_MACH_EPS2
 } machval_t;
 
 #define BLIS_NUM_MACH_PARAMS   11
@@ -609,10 +609,10 @@ typedef enum
 
 typedef enum
 {
-	BLIS_1M        = 0,
-	BLIS_NAT,
-	BLIS_IND_FIRST = 0,
-	BLIS_IND_LAST  = BLIS_NAT
+    BLIS_1M        = 0,
+    BLIS_NAT,
+    BLIS_IND_FIRST = 0,
+    BLIS_IND_LAST  = BLIS_NAT
 } ind_t;
 
 #define BLIS_NUM_IND_METHODS (BLIS_NAT+1)
@@ -627,13 +627,13 @@ typedef enum
 
 typedef enum
 {
-	BLIS_SINGLE = 0,
-	BLIS_OPENMP,
-	BLIS_POSIX,
-	BLIS_HPX,
+    BLIS_SINGLE = 0,
+    BLIS_OPENMP,
+    BLIS_POSIX,
+    BLIS_HPX,
 
-	// BLIS_NUM_THREAD_IMPLS must be last!
-	BLIS_NUM_THREAD_IMPLS
+    // BLIS_NUM_THREAD_IMPLS must be last!
+    BLIS_NUM_THREAD_IMPLS
 
 } timpl_t;
 
@@ -642,93 +642,93 @@ typedef enum
 
 typedef enum
 {
-	// l1v kernels
-	BLIS_ADDV_KER,
-	BLIS_AMAXV_KER,
-	BLIS_AXPBYV_KER,
-	BLIS_AXPYV_KER,
-	BLIS_COPYV_KER,
-	BLIS_DOTV_KER,
-	BLIS_DOTXV_KER,
-	BLIS_INVERTV_KER,
-	BLIS_INVSCALV_KER,
-	BLIS_SCALV_KER,
-	BLIS_SCAL2V_KER,
-	BLIS_SETV_KER,
-	BLIS_SUBV_KER,
-	BLIS_SWAPV_KER,
-	BLIS_XPBYV_KER,
-	BLIS_AXPY2V_KER,
-	BLIS_DOTAXPYV_KER,
+    // l1v kernels
+    BLIS_ADDV_KER,
+    BLIS_AMAXV_KER,
+    BLIS_AXPBYV_KER,
+    BLIS_AXPYV_KER,
+    BLIS_COPYV_KER,
+    BLIS_DOTV_KER,
+    BLIS_DOTXV_KER,
+    BLIS_INVERTV_KER,
+    BLIS_INVSCALV_KER,
+    BLIS_SCALV_KER,
+    BLIS_SCAL2V_KER,
+    BLIS_SETV_KER,
+    BLIS_SUBV_KER,
+    BLIS_SWAPV_KER,
+    BLIS_XPBYV_KER,
+    BLIS_AXPY2V_KER,
+    BLIS_DOTAXPYV_KER,
 
-	// l1f kernels
-	BLIS_AXPYF_KER,
-	BLIS_DOTXF_KER,
-	BLIS_DOTXAXPYF_KER,
+    // l1f kernels
+    BLIS_AXPYF_KER,
+    BLIS_DOTXF_KER,
+    BLIS_DOTXAXPYF_KER,
 
-	// pack kernels
-	BLIS_PACKM_MRXK_KER,
-	BLIS_PACKM_NRXK_KER,
-	BLIS_PACKM_MRXK_1ER_KER,
-	BLIS_PACKM_NRXK_1ER_KER,
-	BLIS_PACKM_MRXMR_DIAG_KER,
-	BLIS_PACKM_NRXNR_DIAG_KER,
-	BLIS_PACKM_MRXMR_DIAG_1ER_KER,
-	BLIS_PACKM_NRXNR_DIAG_1ER_KER,
+    // pack kernels
+    BLIS_PACKM_MRXK_KER,
+    BLIS_PACKM_NRXK_KER,
+    BLIS_PACKM_MRXK_1ER_KER,
+    BLIS_PACKM_NRXK_1ER_KER,
+    BLIS_PACKM_MRXMR_DIAG_KER,
+    BLIS_PACKM_NRXNR_DIAG_KER,
+    BLIS_PACKM_MRXMR_DIAG_1ER_KER,
+    BLIS_PACKM_NRXNR_DIAG_1ER_KER,
 
-	// unpack kernels
-	BLIS_UNPACKM_MRXK_KER,
-	BLIS_UNPACKM_NRXK_KER,
+    // unpack kernels
+    BLIS_UNPACKM_MRXK_KER,
+    BLIS_UNPACKM_NRXK_KER,
 
-	// l3 native kernels
-	BLIS_GEMM_UKR,
-	BLIS_GEMMTRSM_L_UKR,
-	BLIS_GEMMTRSM_U_UKR,
-	BLIS_TRSM_L_UKR,
-	BLIS_TRSM_U_UKR,
+    // l3 native kernels
+    BLIS_GEMM_UKR,
+    BLIS_GEMMTRSM_L_UKR,
+    BLIS_GEMMTRSM_U_UKR,
+    BLIS_TRSM_L_UKR,
+    BLIS_TRSM_U_UKR,
 
-	// l3 virtual kernels
-	BLIS_GEMM_VIR_UKR,
-	BLIS_GEMMTRSM_L_VIR_UKR,
-	BLIS_GEMMTRSM_U_VIR_UKR,
-	BLIS_TRSM_L_VIR_UKR,
-	BLIS_TRSM_U_VIR_UKR,
+    // l3 virtual kernels
+    BLIS_GEMM_VIR_UKR,
+    BLIS_GEMMTRSM_L_VIR_UKR,
+    BLIS_GEMMTRSM_U_VIR_UKR,
+    BLIS_TRSM_L_VIR_UKR,
+    BLIS_TRSM_U_VIR_UKR,
 
-	// gemmsup kernels
-	BLIS_GEMMSUP_RRR_UKR,
-	BLIS_GEMMSUP_RRC_UKR,
-	BLIS_GEMMSUP_RCR_UKR,
-	BLIS_GEMMSUP_RCC_UKR,
-	BLIS_GEMMSUP_CRR_UKR,
-	BLIS_GEMMSUP_CRC_UKR,
-	BLIS_GEMMSUP_CCR_UKR,
-	BLIS_GEMMSUP_CCC_UKR,
-	BLIS_GEMMSUP_XXX_UKR,
+    // gemmsup kernels
+    BLIS_GEMMSUP_RRR_UKR,
+    BLIS_GEMMSUP_RRC_UKR,
+    BLIS_GEMMSUP_RCR_UKR,
+    BLIS_GEMMSUP_RCC_UKR,
+    BLIS_GEMMSUP_CRR_UKR,
+    BLIS_GEMMSUP_CRC_UKR,
+    BLIS_GEMMSUP_CCR_UKR,
+    BLIS_GEMMSUP_CCC_UKR,
+    BLIS_GEMMSUP_XXX_UKR,
 
-	// BLIS_NUM_UKRS must be last!
-	BLIS_NUM_UKRS
+    // BLIS_NUM_UKRS must be last!
+    BLIS_NUM_UKRS
 } ukr_t;
 
 
 typedef enum
 {
     // l3 kernel row preferences
-	BLIS_GEMM_UKR_ROW_PREF,
-	BLIS_GEMMTRSM_L_UKR_ROW_PREF,
-	BLIS_GEMMTRSM_U_UKR_ROW_PREF,
-	BLIS_TRSM_L_UKR_ROW_PREF,
-	BLIS_TRSM_U_UKR_ROW_PREF,
+    BLIS_GEMM_UKR_ROW_PREF,
+    BLIS_GEMMTRSM_L_UKR_ROW_PREF,
+    BLIS_GEMMTRSM_U_UKR_ROW_PREF,
+    BLIS_TRSM_L_UKR_ROW_PREF,
+    BLIS_TRSM_U_UKR_ROW_PREF,
 
     // gemmsup kernel row preferences
-	BLIS_GEMMSUP_RRR_UKR_ROW_PREF,
-	BLIS_GEMMSUP_RRC_UKR_ROW_PREF,
-	BLIS_GEMMSUP_RCR_UKR_ROW_PREF,
-	BLIS_GEMMSUP_RCC_UKR_ROW_PREF,
-	BLIS_GEMMSUP_CRR_UKR_ROW_PREF,
-	BLIS_GEMMSUP_CRC_UKR_ROW_PREF,
-	BLIS_GEMMSUP_CCR_UKR_ROW_PREF,
-	BLIS_GEMMSUP_CCC_UKR_ROW_PREF,
-	BLIS_GEMMSUP_XXX_UKR_ROW_PREF,
+    BLIS_GEMMSUP_RRR_UKR_ROW_PREF,
+    BLIS_GEMMSUP_RRC_UKR_ROW_PREF,
+    BLIS_GEMMSUP_RCR_UKR_ROW_PREF,
+    BLIS_GEMMSUP_RCC_UKR_ROW_PREF,
+    BLIS_GEMMSUP_CRR_UKR_ROW_PREF,
+    BLIS_GEMMSUP_CRC_UKR_ROW_PREF,
+    BLIS_GEMMSUP_CCR_UKR_ROW_PREF,
+    BLIS_GEMMSUP_CCC_UKR_ROW_PREF,
+    BLIS_GEMMSUP_XXX_UKR_ROW_PREF,
 
     // BLIS_NUM_UKR_PREFS must be last!
     BLIS_NUM_UKR_PREFS
@@ -737,10 +737,10 @@ typedef enum
 
 typedef enum
 {
-	BLIS_REFERENCE_UKERNEL = 0,
-	BLIS_VIRTUAL_UKERNEL,
-	BLIS_OPTIMIZED_UKERNEL,
-	BLIS_NOTAPPLIC_UKERNEL
+    BLIS_REFERENCE_UKERNEL = 0,
+    BLIS_VIRTUAL_UKERNEL,
+    BLIS_OPTIMIZED_UKERNEL,
+    BLIS_NOTAPPLIC_UKERNEL
 } kimpl_t;
 
 #define BLIS_NUM_UKR_IMPL_TYPES 4
@@ -749,31 +749,31 @@ typedef enum
 #if 0
 typedef enum
 {
-	// RV = row-stored, contiguous vector-loading
-	// RG = row-stored, non-contiguous gather-loading
-	// CV = column-stored, contiguous vector-loading
-	// CG = column-stored, non-contiguous gather-loading
+    // RV = row-stored, contiguous vector-loading
+    // RG = row-stored, non-contiguous gather-loading
+    // CV = column-stored, contiguous vector-loading
+    // CG = column-stored, non-contiguous gather-loading
 
-	// RD = row-stored, dot-based
-	// CD = col-stored, dot-based
+    // RD = row-stored, dot-based
+    // CD = col-stored, dot-based
 
-	// RC = row-stored, column-times-column
-	// CR = column-stored, row-times-row
+    // RC = row-stored, column-times-column
+    // CR = column-stored, row-times-row
 
-	// GX = general-stored generic implementation
+    // GX = general-stored generic implementation
 
-	BLIS_GEMMSUP_RV_UKR = 0,
-	BLIS_GEMMSUP_RG_UKR,
-	BLIS_GEMMSUP_CV_UKR,
-	BLIS_GEMMSUP_CG_UKR,
+    BLIS_GEMMSUP_RV_UKR = 0,
+    BLIS_GEMMSUP_RG_UKR,
+    BLIS_GEMMSUP_CV_UKR,
+    BLIS_GEMMSUP_CG_UKR,
 
-	BLIS_GEMMSUP_RD_UKR,
-	BLIS_GEMMSUP_CD_UKR,
+    BLIS_GEMMSUP_RD_UKR,
+    BLIS_GEMMSUP_CD_UKR,
 
-	BLIS_GEMMSUP_RC_UKR,
-	BLIS_GEMMSUP_CR_UKR,
+    BLIS_GEMMSUP_RC_UKR,
+    BLIS_GEMMSUP_CR_UKR,
 
-	BLIS_GEMMSUP_GX_UKR,
+    BLIS_GEMMSUP_GX_UKR,
 } l3sup_t;
 
 #define BLIS_NUM_LEVEL3_SUP_UKRS 9
@@ -782,37 +782,37 @@ typedef enum
 
 typedef enum
 {
-	// 3-operand storage combinations
-	BLIS_RRR = 0,
-	BLIS_RRC, // 1
-	BLIS_RCR, // 2
-	BLIS_RCC, // 3
-	BLIS_CRR, // 4
-	BLIS_CRC, // 5
-	BLIS_CCR, // 6
-	BLIS_CCC, // 7
-	BLIS_XXX, // 8
+    // 3-operand storage combinations
+    BLIS_RRR = 0,
+    BLIS_RRC, // 1
+    BLIS_RCR, // 2
+    BLIS_RCC, // 3
+    BLIS_CRR, // 4
+    BLIS_CRC, // 5
+    BLIS_CCR, // 6
+    BLIS_CCC, // 7
+    BLIS_XXX, // 8
 
 #if 0
-	BLIS_RRG,
-	BLIS_RCG,
-	BLIS_RGR,
-	BLIS_RGC,
-	BLIS_RGG,
-	BLIS_CRG,
-	BLIS_CCG,
-	BLIS_CGR,
-	BLIS_CGC,
-	BLIS_CGG,
-	BLIS_GRR,
-	BLIS_GRC,
-	BLIS_GRG,
-	BLIS_GCR,
-	BLIS_GCC,
-	BLIS_GCG,
-	BLIS_GGR,
-	BLIS_GGC,
-	BLIS_GGG,
+    BLIS_RRG,
+    BLIS_RCG,
+    BLIS_RGR,
+    BLIS_RGC,
+    BLIS_RGG,
+    BLIS_CRG,
+    BLIS_CCG,
+    BLIS_CGR,
+    BLIS_CGC,
+    BLIS_CGG,
+    BLIS_GRR,
+    BLIS_GRC,
+    BLIS_GRG,
+    BLIS_GCR,
+    BLIS_GCC,
+    BLIS_GCG,
+    BLIS_GGR,
+    BLIS_GGC,
+    BLIS_GGG,
 #endif
 } stor3_t;
 
@@ -823,12 +823,12 @@ typedef enum
 #if 0
 typedef enum
 {
-	BLIS_JC_IDX = 0,
-	BLIS_PC_IDX,
-	BLIS_IC_IDX,
-	BLIS_JR_IDX,
-	BLIS_IR_IDX,
-	BLIS_PR_IDX
+    BLIS_JC_IDX = 0,
+    BLIS_PC_IDX,
+    BLIS_IC_IDX,
+    BLIS_JR_IDX,
+    BLIS_IR_IDX,
+    BLIS_PR_IDX
 } thridx_t;
 #endif
 
@@ -851,19 +851,19 @@ typedef enum
 // This is needed because these level-3 opid_t values are used in
 // bli_l3_ind.c to index into arrays.
 //
-	BLIS_GEMM = 0,
-	BLIS_GEMMT,
-	BLIS_HEMM,
-	BLIS_HERK,
-	BLIS_HER2K,
-	BLIS_SYMM,
-	BLIS_SYRK,
-	BLIS_SYR2K,
-	BLIS_TRMM3,
-	BLIS_TRMM,
-	BLIS_TRSM,
+    BLIS_GEMM = 0,
+    BLIS_GEMMT,
+    BLIS_HEMM,
+    BLIS_HERK,
+    BLIS_HER2K,
+    BLIS_SYMM,
+    BLIS_SYRK,
+    BLIS_SYR2K,
+    BLIS_TRMM3,
+    BLIS_TRMM,
+    BLIS_TRSM,
 
-	BLIS_NOID
+    BLIS_NOID
 } opid_t;
 
 #define BLIS_NUM_LEVEL3_OPS 11
@@ -873,46 +873,46 @@ typedef enum
 
 typedef enum
 {
-	// NOTE: the level-3 blocksizes MUST be indexed starting at zero.
-	// At one point, we made this assumption in bli_cntx_set_blkszs()
-	// and friends.
-	BLIS_KR,
-	BLIS_MR,
-	BLIS_NR,
-	BLIS_MC,
-	BLIS_KC,
-	BLIS_NC,
+    // NOTE: the level-3 blocksizes MUST be indexed starting at zero.
+    // At one point, we made this assumption in bli_cntx_set_blkszs()
+    // and friends.
+    BLIS_KR,
+    BLIS_MR,
+    BLIS_NR,
+    BLIS_MC,
+    BLIS_KC,
+    BLIS_NC,
 
-	// broadcast factors for packing
-	BLIS_BBM,
-	BLIS_BBN,
+    // broadcast factors for packing
+    BLIS_BBM,
+    BLIS_BBN,
 
-	// level-2 blocksizes
-	BLIS_M2, // level-2 blocksize in m dimension
-	BLIS_N2, // level-2 blocksize in n dimension
+    // level-2 blocksizes
+    BLIS_M2, // level-2 blocksize in m dimension
+    BLIS_N2, // level-2 blocksize in n dimension
 
-	// level-1f blocksizes
-	BLIS_AF, // level-1f axpyf fusing factor
-	BLIS_DF, // level-1f dotxf fusing factor
-	BLIS_XF, // level-1f dotxaxpyf fusing factor
+    // level-1f blocksizes
+    BLIS_AF, // level-1f axpyf fusing factor
+    BLIS_DF, // level-1f dotxf fusing factor
+    BLIS_XF, // level-1f dotxaxpyf fusing factor
 
-	// gemmsup thresholds
-	BLIS_MT, // level-3 small/unpacked matrix threshold in m dimension
-	BLIS_NT, // level-3 small/unpacked matrix threshold in n dimension
-	BLIS_KT, // level-3 small/unpacked matrix threshold in k dimension
+    // gemmsup thresholds
+    BLIS_MT, // level-3 small/unpacked matrix threshold in m dimension
+    BLIS_NT, // level-3 small/unpacked matrix threshold in n dimension
+    BLIS_KT, // level-3 small/unpacked matrix threshold in k dimension
 
-	// gemmsup block sizes
-	BLIS_KR_SUP,
-	BLIS_MR_SUP,
-	BLIS_NR_SUP,
-	BLIS_MC_SUP,
-	BLIS_KC_SUP,
-	BLIS_NC_SUP,
+    // gemmsup block sizes
+    BLIS_KR_SUP,
+    BLIS_MR_SUP,
+    BLIS_NR_SUP,
+    BLIS_MC_SUP,
+    BLIS_KC_SUP,
+    BLIS_NC_SUP,
 
-	// BLIS_NO_PART (= BLIS_NUM_BLKSZS) must be last!
-	BLIS_NO_PART, // used as a placeholder when blocksizes are not applicable,
-	              // such as when characterizing a packm operation.
-	BLIS_NUM_BLKSZS = BLIS_NO_PART
+    // BLIS_NO_PART (= BLIS_NUM_BLKSZS) must be last!
+    BLIS_NO_PART, // used as a placeholder when blocksizes are not applicable,
+                  // such as when characterizing a packm operation.
+    BLIS_NUM_BLKSZS = BLIS_NO_PART
 } bszid_t;
 
 
@@ -925,59 +925,59 @@ typedef enum
 
 typedef enum
 {
-	// NOTE: The C language standard guarantees that the first enum value
-	// starts at 0.
+    // NOTE: The C language standard guarantees that the first enum value
+    // starts at 0.
 
-	// Intel
-	BLIS_ARCH_SKX,
-	BLIS_ARCH_KNL,
-	BLIS_ARCH_KNC,
-	BLIS_ARCH_HASWELL,
-	BLIS_ARCH_SANDYBRIDGE,
-	BLIS_ARCH_PENRYN,
+    // Intel
+    BLIS_ARCH_SKX,
+    BLIS_ARCH_KNL,
+    BLIS_ARCH_KNC,
+    BLIS_ARCH_HASWELL,
+    BLIS_ARCH_SANDYBRIDGE,
+    BLIS_ARCH_PENRYN,
 
-	// AMD
-	BLIS_ARCH_ZEN3,
-	BLIS_ARCH_ZEN2,
-	BLIS_ARCH_ZEN,
-	BLIS_ARCH_EXCAVATOR,
-	BLIS_ARCH_STEAMROLLER,
-	BLIS_ARCH_PILEDRIVER,
-	BLIS_ARCH_BULLDOZER,
+    // AMD
+    BLIS_ARCH_ZEN3,
+    BLIS_ARCH_ZEN2,
+    BLIS_ARCH_ZEN,
+    BLIS_ARCH_EXCAVATOR,
+    BLIS_ARCH_STEAMROLLER,
+    BLIS_ARCH_PILEDRIVER,
+    BLIS_ARCH_BULLDOZER,
 
-	// ARM-SVE
-	BLIS_ARCH_ARMSVE,
-	BLIS_ARCH_A64FX,
+    // ARM-SVE
+    BLIS_ARCH_ARMSVE,
+    BLIS_ARCH_A64FX,
 
-	// ARM-NEON (4 pipes x 128-bit vectors)
-	BLIS_ARCH_FIRESTORM,
+    // ARM-NEON (4 pipes x 128-bit vectors)
+    BLIS_ARCH_FIRESTORM,
 
-	// ARM (2 pipes x 128-bit vectors)
-	BLIS_ARCH_THUNDERX2,
-	BLIS_ARCH_CORTEXA57,
-	BLIS_ARCH_CORTEXA53,
-	BLIS_ARCH_CORTEXA15,
-	BLIS_ARCH_CORTEXA9,
+    // ARM (2 pipes x 128-bit vectors)
+    BLIS_ARCH_THUNDERX2,
+    BLIS_ARCH_CORTEXA57,
+    BLIS_ARCH_CORTEXA53,
+    BLIS_ARCH_CORTEXA15,
+    BLIS_ARCH_CORTEXA9,
 
-	// IBM/Power
-	BLIS_ARCH_POWER10,
-	BLIS_ARCH_POWER9,
-	BLIS_ARCH_POWER7,
-	BLIS_ARCH_BGQ,
+    // IBM/Power
+    BLIS_ARCH_POWER10,
+    BLIS_ARCH_POWER9,
+    BLIS_ARCH_POWER7,
+    BLIS_ARCH_BGQ,
 
-	// RISC-V
-	BLIS_ARCH_RV32I,
-	BLIS_ARCH_RV64I,
-	BLIS_ARCH_RV32IV,
-	BLIS_ARCH_RV64IV,
+    // RISC-V
+    BLIS_ARCH_RV32I,
+    BLIS_ARCH_RV64I,
+    BLIS_ARCH_RV32IV,
+    BLIS_ARCH_RV64IV,
 
-	// Generic architecture/configuration
-	BLIS_ARCH_GENERIC,
+    // Generic architecture/configuration
+    BLIS_ARCH_GENERIC,
 
-	// The total number of defined architectures. This must be last in the
-	// list of enums since its definition assumes that the previous enum
-	// value (BLIS_ARCH_GENERIC) is given index num_archs-1.
-	BLIS_NUM_ARCHS
+    // The total number of defined architectures. This must be last in the
+    // list of enums since its definition assumes that the previous enum
+    // value (BLIS_ARCH_GENERIC) is given index num_archs-1.
+    BLIS_NUM_ARCHS
 
 } arch_t;
 
@@ -994,8 +994,8 @@ typedef enum
 
 typedef struct
 {
-	void*     buf;
-	siz_t     block_size;
+    void*     buf;
+    siz_t     block_size;
 
 } pblk_t;
 
@@ -1004,18 +1004,18 @@ typedef struct
 
 typedef struct
 {
-	void*     block_ptrs;
-	dim_t     block_ptrs_len;
+    void*     block_ptrs;
+    dim_t     block_ptrs_len;
 
-	dim_t     top_index;
-	dim_t     num_blocks;
+    dim_t     top_index;
+    dim_t     num_blocks;
 
-	siz_t     block_size;
-	siz_t     align_size;
-	siz_t     offset_size;
+    siz_t     block_size;
+    siz_t     align_size;
+    siz_t     offset_size;
 
-	malloc_ft malloc_fp;
-	free_ft   free_fp;
+    malloc_ft malloc_fp;
+    free_ft   free_fp;
 
 } pool_t;
 
@@ -1024,10 +1024,10 @@ typedef struct
 
 typedef struct
 {
-	void*     buf;
+    void*     buf;
 
-	siz_t     num_elem;
-	siz_t     elem_size;
+    siz_t     num_elem;
+    siz_t     elem_size;
 
 } array_t;
 
@@ -1036,10 +1036,10 @@ typedef struct
 
 typedef struct
 {
-	bli_pthread_mutex_t mutex;
-	pool_t              pool;
+    bli_pthread_mutex_t mutex;
+    pool_t              pool;
 
-	siz_t               def_array_len;
+    siz_t               def_array_len;
 
 } apool_t;
 
@@ -1048,13 +1048,13 @@ typedef struct
 
 typedef struct pba_s
 {
-	pool_t              pools[3];
-	bli_pthread_mutex_t mutex;
+    pool_t              pools[3];
+    bli_pthread_mutex_t mutex;
 
-	// These fields are used for general-purpose allocation.
-	siz_t               align_size;
-	malloc_ft           malloc_fp;
-	free_ft             free_fp;
+    // These fields are used for general-purpose allocation.
+    siz_t               align_size;
+    malloc_ft           malloc_fp;
+    free_ft             free_fp;
 
 } pba_t;
 
@@ -1063,10 +1063,10 @@ typedef struct pba_s
 
 typedef struct mem_s
 {
-	pblk_t    pblk;
-	packbuf_t buf_type;
-	pool_t*   pool;
-	siz_t     size;
+    pblk_t    pblk;
+    packbuf_t buf_type;
+    pool_t*   pool;
+    siz_t     size;
 } mem_t;
 
 
@@ -1074,13 +1074,13 @@ typedef struct mem_s
 
 struct cntl_s
 {
-	// Basic fields (usually required).
-	opid_t         family;
-	bszid_t        bszid;
-	void_fp        var_func;
-	struct cntl_s* sub_prenode;
-	struct cntl_s* sub_node;
-	void*          params;
+    // Basic fields (usually required).
+    opid_t         family;
+    bszid_t        bszid;
+    void_fp        var_func;
+    struct cntl_s* sub_prenode;
+    struct cntl_s* sub_node;
+    void*          params;
 };
 typedef struct cntl_s cntl_t;
 
@@ -1089,11 +1089,11 @@ typedef struct cntl_s cntl_t;
 
 typedef struct blksz_s
 {
-	// Primary blocksize values.
-	dim_t  v[BLIS_NUM_FP_TYPES];
+    // Primary blocksize values.
+    dim_t  v[BLIS_NUM_FP_TYPES];
 
-	// Blocksize extensions.
-	dim_t  e[BLIS_NUM_FP_TYPES];
+    // Blocksize extensions.
+    dim_t  e[BLIS_NUM_FP_TYPES];
 
 } blksz_t;
 
@@ -1102,8 +1102,8 @@ typedef struct blksz_s
 
 typedef struct func_s
 {
-	// Kernel function address.
-	void_fp ptr[BLIS_NUM_FP_TYPES];
+    // Kernel function address.
+    void_fp ptr[BLIS_NUM_FP_TYPES];
 
 } func_t;
 
@@ -1112,7 +1112,7 @@ typedef struct func_s
 
 typedef struct mbool_s
 {
-	bool v[BLIS_NUM_FP_TYPES];
+    bool v[BLIS_NUM_FP_TYPES];
 
 } mbool_t;
 
@@ -1125,32 +1125,32 @@ typedef struct mbool_s
 
 typedef struct
 {
-	// The pack schemas of A and B.
-	pack_t schema_a;
-	pack_t schema_b;
+    // The pack schemas of A and B.
+    pack_t schema_a;
+    pack_t schema_b;
 
-	// Pointers to the micro-panels of A and B which will be used by the
-	// next call to the micro-kernel.
-	const void* a_next;
-	const void* b_next;
+    // Pointers to the micro-panels of A and B which will be used by the
+    // next call to the micro-kernel.
+    const void* a_next;
+    const void* b_next;
 
-	// The imaginary strides of A and B.
-	inc_t is_a;
-	inc_t is_b;
+    // The imaginary strides of A and B.
+    inc_t is_a;
+    inc_t is_b;
 
-	// The panel strides of A and B.
-	// NOTE: These are only used in situations where iteration over the
-	// micropanels takes place in part within the kernel code (e.g. sup
-	// millikernels).
-	inc_t ps_a;
-	inc_t ps_b;
+    // The panel strides of A and B.
+    // NOTE: These are only used in situations where iteration over the
+    // micropanels takes place in part within the kernel code (e.g. sup
+    // millikernels).
+    inc_t ps_a;
+    inc_t ps_b;
 
-	// The type to convert to on output.
-	//num_t  dt_on_output;
+    // The type to convert to on output.
+    //num_t  dt_on_output;
 
-	// (Virtual) microkernel address and additional parameters.
-	void_fp ukr;
-	const void* params;
+    // (Virtual) microkernel address and additional parameters.
+    void_fp ukr;
+    const void* params;
 
 } auxinfo_t;
 
@@ -1161,11 +1161,11 @@ typedef struct
 // global scalar constants in bli_const.c.
 typedef struct constdata_s
 {
-	float    s;
-	double   d;
-	scomplex c;
-	dcomplex z;
-	gint_t   i;
+    float    s;
+    double   d;
+    scomplex c;
+    dcomplex z;
+    gint_t   i;
 
 } constdata_t;
 
@@ -1201,39 +1201,39 @@ typedef void (*obj_ker_fn_t)
 
 typedef struct obj_s
 {
-	// Basic fields
-	struct obj_s* root;
+    // Basic fields
+    struct obj_s* root;
 
-	dim_t         off[2];
-	dim_t         dim[2];
-	doff_t        diag_off;
+    dim_t         off[2];
+    dim_t         dim[2];
+    doff_t        diag_off;
 
-	objbits_t     info;
-	objbits_t     info2;
-	siz_t         elem_size;
+    objbits_t     info;
+    objbits_t     info2;
+    siz_t         elem_size;
 
-	void*         buffer;
-	inc_t         rs;
-	inc_t         cs;
-	inc_t         is;
+    void*         buffer;
+    inc_t         rs;
+    inc_t         cs;
+    inc_t         is;
 
-	// Bufferless scalar storage
-	atom_t        scalar;
+    // Bufferless scalar storage
+    atom_t        scalar;
 
-	// Pack-related fields
-	dim_t         m_padded; // m dimension of matrix, including any padding
-	dim_t         n_padded; // n dimension of matrix, including any padding
-	inc_t         ps;       // panel stride (distance to next panel)
-	inc_t         pd;       // panel dimension (the "width" of a panel:
-	                        // usually MR or NR)
-	dim_t         m_panel;  // m dimension of a "full" panel
-	dim_t         n_panel;  // n dimension of a "full" panel
+    // Pack-related fields
+    dim_t         m_padded; // m dimension of matrix, including any padding
+    dim_t         n_padded; // n dimension of matrix, including any padding
+    inc_t         ps;       // panel stride (distance to next panel)
+    inc_t         pd;       // panel dimension (the "width" of a panel:
+                            // usually MR or NR)
+    dim_t         m_panel;  // m dimension of a "full" panel
+    dim_t         n_panel;  // n dimension of a "full" panel
 
-	// User-customizable fields
-	obj_pack_fn_t pack_fn;
-	void*         pack_params;
-	obj_ker_fn_t  ker_fn;
-	void*         ker_params;
+    // User-customizable fields
+    obj_pack_fn_t pack_fn;
+    void*         pack_params;
+    obj_ker_fn_t  ker_fn;
+    void*         ker_params;
 
 } obj_t;
 
@@ -1248,68 +1248,68 @@ typedef struct obj_s
 
 #define BLIS_OBJECT_INITIALIZER \
 { \
-	.root        = NULL, \
+    .root        = NULL, \
 \
-	.off         = { 0, 0 }, \
-	.dim         = { 0, 0 }, \
-	.diag_off    = 0, \
+    .off         = { 0, 0 }, \
+    .dim         = { 0, 0 }, \
+    .diag_off    = 0, \
 \
-	.info        = 0x0 | BLIS_BITVAL_DENSE      | \
-	                     BLIS_BITVAL_GENERAL, \
-	.info2       = 0x0, \
-	.elem_size   = sizeof( float ), /* this is changed later. */ \
+    .info        = 0x0 | BLIS_BITVAL_DENSE      | \
+                         BLIS_BITVAL_GENERAL, \
+    .info2       = 0x0, \
+    .elem_size   = sizeof( float ), /* this is changed later. */ \
 \
-	.buffer      = NULL, \
-	.rs          = 0, \
-	.cs          = 0, \
-	.is          = 1,  \
+    .buffer      = NULL, \
+    .rs          = 0, \
+    .cs          = 0, \
+    .is          = 1,  \
 \
-	.scalar      = { 0.0, 0.0 }, \
+    .scalar      = { 0.0, 0.0 }, \
 \
-	.m_padded    = 0, \
-	.n_padded    = 0, \
-	.ps          = 0, \
-	.pd          = 0, \
-	.m_panel     = 0, \
-	.n_panel     = 0, \
+    .m_padded    = 0, \
+    .n_padded    = 0, \
+    .ps          = 0, \
+    .pd          = 0, \
+    .m_panel     = 0, \
+    .n_panel     = 0, \
 \
-	.pack_fn     = NULL, \
-	.pack_params = NULL, \
-	.ker_fn      = NULL, \
-	.ker_params  = NULL  \
+    .pack_fn     = NULL, \
+    .pack_params = NULL, \
+    .ker_fn      = NULL, \
+    .ker_params  = NULL  \
 }
 
 #define BLIS_OBJECT_INITIALIZER_1X1 \
 { \
-	.root        = NULL, \
+    .root        = NULL, \
 \
-	.off         = { 0, 0 }, \
-	.dim         = { 1, 1 }, \
-	.diag_off    = 0, \
+    .off         = { 0, 0 }, \
+    .dim         = { 1, 1 }, \
+    .diag_off    = 0, \
 \
-	.info        = 0x0 | BLIS_BITVAL_DENSE      | \
-	                     BLIS_BITVAL_GENERAL, \
-	.info2       = 0x0, \
-	.elem_size   = sizeof( float ), /* this is changed later. */ \
+    .info        = 0x0 | BLIS_BITVAL_DENSE      | \
+                         BLIS_BITVAL_GENERAL, \
+    .info2       = 0x0, \
+    .elem_size   = sizeof( float ), /* this is changed later. */ \
 \
-	.buffer      = NULL, \
-	.rs          = 0, \
-	.cs          = 0, \
-	.is          = 1,  \
+    .buffer      = NULL, \
+    .rs          = 0, \
+    .cs          = 0, \
+    .is          = 1,  \
 \
-	.scalar      = { 0.0, 0.0 }, \
+    .scalar      = { 0.0, 0.0 }, \
 \
-	.m_padded    = 0, \
-	.n_padded    = 0, \
-	.ps          = 0, \
-	.pd          = 0, \
-	.m_panel     = 0, \
-	.n_panel     = 0, \
+    .m_padded    = 0, \
+    .n_padded    = 0, \
+    .ps          = 0, \
+    .pd          = 0, \
+    .m_panel     = 0, \
+    .n_panel     = 0, \
 \
-	.pack_fn     = NULL, \
-	.pack_params = NULL, \
-	.ker_fn      = NULL, \
-	.ker_params  = NULL  \
+    .pack_fn     = NULL, \
+    .pack_params = NULL, \
+    .ker_fn      = NULL, \
+    .ker_params  = NULL  \
 }
 
 // Define these macros here since they must be updated if contents of
@@ -1317,75 +1317,75 @@ typedef struct obj_s
 
 BLIS_INLINE void bli_obj_init_full_shallow_copy_of( const obj_t* a, obj_t* b )
 {
-	b->root        = a->root;
+    b->root        = a->root;
 
-	b->off[0]      = a->off[0];
-	b->off[1]      = a->off[1];
-	b->dim[0]      = a->dim[0];
-	b->dim[1]      = a->dim[1];
-	b->diag_off    = a->diag_off;
+    b->off[0]      = a->off[0];
+    b->off[1]      = a->off[1];
+    b->dim[0]      = a->dim[0];
+    b->dim[1]      = a->dim[1];
+    b->diag_off    = a->diag_off;
 
-	b->info        = a->info;
-	b->info2       = a->info2;
-	b->elem_size   = a->elem_size;
+    b->info        = a->info;
+    b->info2       = a->info2;
+    b->elem_size   = a->elem_size;
 
-	b->buffer      = a->buffer;
-	b->rs          = a->rs;
-	b->cs          = a->cs;
-	b->is          = a->is;
+    b->buffer      = a->buffer;
+    b->rs          = a->rs;
+    b->cs          = a->cs;
+    b->is          = a->is;
 
-	b->scalar      = a->scalar;
+    b->scalar      = a->scalar;
 
-	//b->pack_mem    = a->pack_mem;
-	b->m_padded    = a->m_padded;
-	b->n_padded    = a->n_padded;
-	b->ps          = a->ps;
-	b->pd          = a->pd;
-	b->m_panel     = a->m_panel;
-	b->n_panel     = a->n_panel;
+    //b->pack_mem    = a->pack_mem;
+    b->m_padded    = a->m_padded;
+    b->n_padded    = a->n_padded;
+    b->ps          = a->ps;
+    b->pd          = a->pd;
+    b->m_panel     = a->m_panel;
+    b->n_panel     = a->n_panel;
 
-	b->pack_fn     = a->pack_fn;
-	b->pack_params = a->pack_params;
-	b->ker_fn      = a->ker_fn;
-	b->ker_params  = a->ker_params;
+    b->pack_fn     = a->pack_fn;
+    b->pack_params = a->pack_params;
+    b->ker_fn      = a->ker_fn;
+    b->ker_params  = a->ker_params;
 }
 
 BLIS_INLINE void bli_obj_init_subpart_from( const obj_t* a, obj_t* b )
 {
-	b->root        = a->root;
+    b->root        = a->root;
 
-	b->off[0]      = a->off[0];
-	b->off[1]      = a->off[1];
-	// Avoid copying m and n since they will be overwritten.
-	//b->dim[0]      = a->dim[0];
-	//b->dim[1]      = a->dim[1];
-	b->diag_off    = a->diag_off;
+    b->off[0]      = a->off[0];
+    b->off[1]      = a->off[1];
+    // Avoid copying m and n since they will be overwritten.
+    //b->dim[0]      = a->dim[0];
+    //b->dim[1]      = a->dim[1];
+    b->diag_off    = a->diag_off;
 
-	b->info        = a->info;
-	b->info2       = a->info2;
-	b->elem_size   = a->elem_size;
+    b->info        = a->info;
+    b->info2       = a->info2;
+    b->elem_size   = a->elem_size;
 
-	b->buffer      = a->buffer;
-	b->rs          = a->rs;
-	b->cs          = a->cs;
-	b->is          = a->is;
+    b->buffer      = a->buffer;
+    b->rs          = a->rs;
+    b->cs          = a->cs;
+    b->is          = a->is;
 
-	b->scalar      = a->scalar;
+    b->scalar      = a->scalar;
 
-	// Avoid copying pack_mem entry.
-	// FGVZ: You should probably make sure this is right.
-	//b->pack_mem    = a->pack_mem;
-	b->m_padded    = a->m_padded;
-	b->n_padded    = a->n_padded;
-	b->ps          = a->ps;
-	b->pd          = a->pd;
-	b->m_panel     = a->m_panel;
-	b->n_panel     = a->n_panel;
+    // Avoid copying pack_mem entry.
+    // FGVZ: You should probably make sure this is right.
+    //b->pack_mem    = a->pack_mem;
+    b->m_padded    = a->m_padded;
+    b->n_padded    = a->n_padded;
+    b->ps          = a->ps;
+    b->pd          = a->pd;
+    b->m_panel     = a->m_panel;
+    b->n_panel     = a->n_panel;
 
-	b->pack_fn     = a->pack_fn;
-	b->pack_params = a->pack_params;
-	b->ker_fn      = a->ker_fn;
-	b->ker_params  = a->ker_params;
+    b->pack_fn     = a->pack_fn;
+    b->pack_params = a->pack_params;
+    b->ker_fn      = a->ker_fn;
+    b->ker_params  = a->ker_params;
 }
 
 // Initializors for global scalar constants.
@@ -1394,40 +1394,40 @@ BLIS_INLINE void bli_obj_init_subpart_from( const obj_t* a, obj_t* b )
 
 #define bli_obj_init_const( buffer0 ) \
 { \
-	.root      = NULL, \
+    .root      = NULL, \
 \
-	.off       = { 0, 0 }, \
-	.dim       = { 1, 1 }, \
-	.diag_off  = 0, \
+    .off       = { 0, 0 }, \
+    .dim       = { 1, 1 }, \
+    .diag_off  = 0, \
 \
-	.info      = 0x0 | BLIS_BITVAL_CONST_TYPE | \
-	                   BLIS_BITVAL_DENSE      | \
-	                   BLIS_BITVAL_GENERAL, \
-	.info2     = 0x0, \
-	.elem_size = sizeof( constdata_t ), \
+    .info      = 0x0 | BLIS_BITVAL_CONST_TYPE | \
+                       BLIS_BITVAL_DENSE      | \
+                       BLIS_BITVAL_GENERAL, \
+    .info2     = 0x0, \
+    .elem_size = sizeof( constdata_t ), \
 \
-	.buffer    = buffer0, \
-	.rs        = 1, \
-	.cs        = 1, \
-	.is        = 1  \
+    .buffer    = buffer0, \
+    .rs        = 1, \
+    .cs        = 1, \
+    .is        = 1  \
 }
 
 #define bli_obj_init_constdata( val ) \
 { \
-	.s =           ( float  )val, \
-	.d =           ( double )val, \
-	.c = { .real = ( float  )val, .imag = 0.0f }, \
-	.z = { .real = ( double )val, .imag = 0.0 }, \
-	.i =           ( gint_t )val, \
+    .s =           ( float  )val, \
+    .d =           ( double )val, \
+    .c = { .real = ( float  )val, .imag = 0.0f }, \
+    .z = { .real = ( double )val, .imag = 0.0 }, \
+    .i =           ( gint_t )val, \
 }
 
 #define bli_obj_init_constdata_ri( valr, vali ) \
 { \
-	.s =           ( float  )valr, \
-	.d =           ( double )valr, \
-	.c = { .real = ( float  )valr, .imag = ( float  )vali }, \
-	.z = { .real = ( double )valr, .imag = ( double )vali }, \
-	.i =           ( gint_t )valr, \
+    .s =           ( float  )valr, \
+    .d =           ( double )valr, \
+    .c = { .real = ( float  )valr, .imag = ( float  )vali }, \
+    .z = { .real = ( double )valr, .imag = ( double )vali }, \
+    .i =           ( gint_t )valr, \
 }
 
 
@@ -1435,15 +1435,15 @@ BLIS_INLINE void bli_obj_init_subpart_from( const obj_t* a, obj_t* b )
 
 typedef struct cntx_s
 {
-	blksz_t   blkszs[ BLIS_NUM_BLKSZS ];
-	bszid_t   bmults[ BLIS_NUM_BLKSZS ];
+    blksz_t   blkszs[ BLIS_NUM_BLKSZS ];
+    bszid_t   bmults[ BLIS_NUM_BLKSZS ];
 
-	func_t    ukrs[ BLIS_NUM_UKRS ];
-	mbool_t   ukr_prefs[ BLIS_NUM_UKR_PREFS ];
+    func_t    ukrs[ BLIS_NUM_UKRS ];
+    mbool_t   ukr_prefs[ BLIS_NUM_UKR_PREFS ];
 
-	void_fp   l3_sup_handlers[ BLIS_NUM_LEVEL3_OPS ];
+    void_fp   l3_sup_handlers[ BLIS_NUM_LEVEL3_OPS ];
 
-	ind_t     method;
+    ind_t     method;
 
 } cntx_t;
 
@@ -1455,16 +1455,16 @@ typedef struct cntx_s
 
 typedef struct rntm_s
 {
-	// "External" fields: these may be queried by the end-user.
-	timpl_t   thread_impl;
+    // "External" fields: these may be queried by the end-user.
+    timpl_t   thread_impl;
 
-	bool      auto_factor;
+    bool      auto_factor;
 
-	dim_t     num_threads;
-	dim_t     thrloop[ BLIS_NUM_LOOPS ];
-	bool      pack_a; // enable/disable packing of left-hand matrix A.
-	bool      pack_b; // enable/disable packing of right-hand matrix B.
-	bool      l3_sup; // enable/disable small matrix handling in level-3 ops.
+    dim_t     num_threads;
+    dim_t     thrloop[ BLIS_NUM_LOOPS ];
+    bool      pack_a; // enable/disable packing of left-hand matrix A.
+    bool      pack_b; // enable/disable packing of right-hand matrix B.
+    bool      l3_sup; // enable/disable small matrix handling in level-3 ops.
 } rntm_t;
 
 
@@ -1472,112 +1472,112 @@ typedef struct rntm_s
 
 typedef enum
 {
-	BLIS_NO_ERROR_CHECKING = 0,
-	BLIS_FULL_ERROR_CHECKING
+    BLIS_NO_ERROR_CHECKING = 0,
+    BLIS_FULL_ERROR_CHECKING
 } errlev_t;
 
 typedef enum
 {
-	// Generic error codes
-	BLIS_SUCCESS                               = (  -1),
-	BLIS_FAILURE                               = (  -2),
+    // Generic error codes
+    BLIS_SUCCESS                               = (  -1),
+    BLIS_FAILURE                               = (  -2),
 
-	BLIS_ERROR_CODE_MIN                        = (  -9),
+    BLIS_ERROR_CODE_MIN                        = (  -9),
 
-	// General errors
-	BLIS_INVALID_ERROR_CHECKING_LEVEL          = ( -10),
-	BLIS_UNDEFINED_ERROR_CODE                  = ( -11),
-	BLIS_NULL_POINTER                          = ( -12),
-	BLIS_NOT_YET_IMPLEMENTED                   = ( -13),
+    // General errors
+    BLIS_INVALID_ERROR_CHECKING_LEVEL          = ( -10),
+    BLIS_UNDEFINED_ERROR_CODE                  = ( -11),
+    BLIS_NULL_POINTER                          = ( -12),
+    BLIS_NOT_YET_IMPLEMENTED                   = ( -13),
 
-	// Parameter-specific errors
-	BLIS_INVALID_SIDE                          = ( -20),
-	BLIS_INVALID_UPLO                          = ( -21),
-	BLIS_INVALID_TRANS                         = ( -22),
-	BLIS_INVALID_CONJ                          = ( -23),
-	BLIS_INVALID_DIAG                          = ( -24),
-	BLIS_INVALID_MACHVAL                       = ( -25),
-	BLIS_EXPECTED_NONUNIT_DIAG                 = ( -26),
+    // Parameter-specific errors
+    BLIS_INVALID_SIDE                          = ( -20),
+    BLIS_INVALID_UPLO                          = ( -21),
+    BLIS_INVALID_TRANS                         = ( -22),
+    BLIS_INVALID_CONJ                          = ( -23),
+    BLIS_INVALID_DIAG                          = ( -24),
+    BLIS_INVALID_MACHVAL                       = ( -25),
+    BLIS_EXPECTED_NONUNIT_DIAG                 = ( -26),
 
-	// Datatype-specific errors
-	BLIS_INVALID_DATATYPE                      = ( -30),
-	BLIS_EXPECTED_FLOATING_POINT_DATATYPE      = ( -31),
-	BLIS_EXPECTED_NONINTEGER_DATATYPE          = ( -32),
-	BLIS_EXPECTED_NONCONSTANT_DATATYPE         = ( -33),
-	BLIS_EXPECTED_REAL_DATATYPE                = ( -34),
-	BLIS_EXPECTED_INTEGER_DATATYPE             = ( -35),
-	BLIS_INCONSISTENT_DATATYPES                = ( -36),
-	BLIS_EXPECTED_REAL_PROJ_OF                 = ( -37),
-	BLIS_EXPECTED_REAL_VALUED_OBJECT           = ( -38),
-	BLIS_INCONSISTENT_PRECISIONS               = ( -39),
+    // Datatype-specific errors
+    BLIS_INVALID_DATATYPE                      = ( -30),
+    BLIS_EXPECTED_FLOATING_POINT_DATATYPE      = ( -31),
+    BLIS_EXPECTED_NONINTEGER_DATATYPE          = ( -32),
+    BLIS_EXPECTED_NONCONSTANT_DATATYPE         = ( -33),
+    BLIS_EXPECTED_REAL_DATATYPE                = ( -34),
+    BLIS_EXPECTED_INTEGER_DATATYPE             = ( -35),
+    BLIS_INCONSISTENT_DATATYPES                = ( -36),
+    BLIS_EXPECTED_REAL_PROJ_OF                 = ( -37),
+    BLIS_EXPECTED_REAL_VALUED_OBJECT           = ( -38),
+    BLIS_INCONSISTENT_PRECISIONS               = ( -39),
 
-	// Dimension-specific errors
-	BLIS_NONCONFORMAL_DIMENSIONS               = ( -40),
-	BLIS_EXPECTED_SCALAR_OBJECT                = ( -41),
-	BLIS_EXPECTED_VECTOR_OBJECT                = ( -42),
-	BLIS_UNEQUAL_VECTOR_LENGTHS                = ( -43),
-	BLIS_EXPECTED_SQUARE_OBJECT                = ( -44),
-	BLIS_UNEXPECTED_OBJECT_LENGTH              = ( -45),
-	BLIS_UNEXPECTED_OBJECT_WIDTH               = ( -46),
-	BLIS_UNEXPECTED_VECTOR_DIM                 = ( -47),
-	BLIS_UNEXPECTED_DIAG_OFFSET                = ( -48),
-	BLIS_NEGATIVE_DIMENSION                    = ( -49),
+    // Dimension-specific errors
+    BLIS_NONCONFORMAL_DIMENSIONS               = ( -40),
+    BLIS_EXPECTED_SCALAR_OBJECT                = ( -41),
+    BLIS_EXPECTED_VECTOR_OBJECT                = ( -42),
+    BLIS_UNEQUAL_VECTOR_LENGTHS                = ( -43),
+    BLIS_EXPECTED_SQUARE_OBJECT                = ( -44),
+    BLIS_UNEXPECTED_OBJECT_LENGTH              = ( -45),
+    BLIS_UNEXPECTED_OBJECT_WIDTH               = ( -46),
+    BLIS_UNEXPECTED_VECTOR_DIM                 = ( -47),
+    BLIS_UNEXPECTED_DIAG_OFFSET                = ( -48),
+    BLIS_NEGATIVE_DIMENSION                    = ( -49),
 
-	// Stride-specific errors
-	BLIS_INVALID_ROW_STRIDE                    = ( -50),
-	BLIS_INVALID_COL_STRIDE                    = ( -51),
-	BLIS_INVALID_DIM_STRIDE_COMBINATION        = ( -52),
+    // Stride-specific errors
+    BLIS_INVALID_ROW_STRIDE                    = ( -50),
+    BLIS_INVALID_COL_STRIDE                    = ( -51),
+    BLIS_INVALID_DIM_STRIDE_COMBINATION        = ( -52),
 
-	// Structure-specific errors
-	BLIS_EXPECTED_GENERAL_OBJECT               = ( -60),
-	BLIS_EXPECTED_HERMITIAN_OBJECT             = ( -61),
-	BLIS_EXPECTED_SYMMETRIC_OBJECT             = ( -62),
-	BLIS_EXPECTED_TRIANGULAR_OBJECT            = ( -63),
+    // Structure-specific errors
+    BLIS_EXPECTED_GENERAL_OBJECT               = ( -60),
+    BLIS_EXPECTED_HERMITIAN_OBJECT             = ( -61),
+    BLIS_EXPECTED_SYMMETRIC_OBJECT             = ( -62),
+    BLIS_EXPECTED_TRIANGULAR_OBJECT            = ( -63),
 
-	// Storage-specific errors
-	BLIS_EXPECTED_UPPER_OR_LOWER_OBJECT        = ( -70),
+    // Storage-specific errors
+    BLIS_EXPECTED_UPPER_OR_LOWER_OBJECT        = ( -70),
 
-	// Partitioning-specific errors
-	BLIS_INVALID_3x1_SUBPART                   = ( -80),
-	BLIS_INVALID_1x3_SUBPART                   = ( -81),
-	BLIS_INVALID_3x3_SUBPART                   = ( -82),
+    // Partitioning-specific errors
+    BLIS_INVALID_3x1_SUBPART                   = ( -80),
+    BLIS_INVALID_1x3_SUBPART                   = ( -81),
+    BLIS_INVALID_3x3_SUBPART                   = ( -82),
 
-	// Control tree-specific errors
-	BLIS_UNEXPECTED_NULL_CONTROL_TREE          = ( -90),
+    // Control tree-specific errors
+    BLIS_UNEXPECTED_NULL_CONTROL_TREE          = ( -90),
 
-	// Packing-specific errors
-	BLIS_PACK_SCHEMA_NOT_SUPPORTED_FOR_UNPACK  = (-100),
+    // Packing-specific errors
+    BLIS_PACK_SCHEMA_NOT_SUPPORTED_FOR_UNPACK  = (-100),
 
-	// Buffer-specific errors
-	BLIS_EXPECTED_NONNULL_OBJECT_BUFFER        = (-110),
+    // Buffer-specific errors
+    BLIS_EXPECTED_NONNULL_OBJECT_BUFFER        = (-110),
 
-	// Memory errors
-	BLIS_MALLOC_RETURNED_NULL                  = (-120),
+    // Memory errors
+    BLIS_MALLOC_RETURNED_NULL                  = (-120),
 
-	// Internal memory pool errors
-	BLIS_INVALID_PACKBUF                       = (-130),
-	BLIS_EXHAUSTED_CONTIG_MEMORY_POOL          = (-131),
-	BLIS_INSUFFICIENT_STACK_BUF_SIZE           = (-132),
-	BLIS_ALIGNMENT_NOT_POWER_OF_TWO            = (-133),
-	BLIS_ALIGNMENT_NOT_MULT_OF_PTR_SIZE        = (-134),
+    // Internal memory pool errors
+    BLIS_INVALID_PACKBUF                       = (-130),
+    BLIS_EXHAUSTED_CONTIG_MEMORY_POOL          = (-131),
+    BLIS_INSUFFICIENT_STACK_BUF_SIZE           = (-132),
+    BLIS_ALIGNMENT_NOT_POWER_OF_TWO            = (-133),
+    BLIS_ALIGNMENT_NOT_MULT_OF_PTR_SIZE        = (-134),
 
-	// Object-related errors
-	BLIS_EXPECTED_OBJECT_ALIAS                 = (-140),
+    // Object-related errors
+    BLIS_EXPECTED_OBJECT_ALIAS                 = (-140),
 
-	// Architecture-related errors
-	BLIS_INVALID_ARCH_ID                       = (-150),
-	BLIS_UNINITIALIZED_GKS_CNTX                = (-151),
-	BLIS_INVALID_UKR_ID                        = (-152),
+    // Architecture-related errors
+    BLIS_INVALID_ARCH_ID                       = (-150),
+    BLIS_UNINITIALIZED_GKS_CNTX                = (-151),
+    BLIS_INVALID_UKR_ID                        = (-152),
 
-	// Blocksize-related errors
-	BLIS_MC_DEF_NONMULTIPLE_OF_MR              = (-160),
-	BLIS_MC_MAX_NONMULTIPLE_OF_MR              = (-161),
-	BLIS_NC_DEF_NONMULTIPLE_OF_NR              = (-162),
-	BLIS_NC_MAX_NONMULTIPLE_OF_NR              = (-163),
-	BLIS_KC_DEF_NONMULTIPLE_OF_KR              = (-164),
-	BLIS_KC_MAX_NONMULTIPLE_OF_KR              = (-165),
+    // Blocksize-related errors
+    BLIS_MC_DEF_NONMULTIPLE_OF_MR              = (-160),
+    BLIS_MC_MAX_NONMULTIPLE_OF_MR              = (-161),
+    BLIS_NC_DEF_NONMULTIPLE_OF_NR              = (-162),
+    BLIS_NC_MAX_NONMULTIPLE_OF_NR              = (-163),
+    BLIS_KC_DEF_NONMULTIPLE_OF_KR              = (-164),
+    BLIS_KC_MAX_NONMULTIPLE_OF_KR              = (-165),
 
-	BLIS_ERROR_CODE_MAX                        = (-170)
+    BLIS_ERROR_CODE_MAX                        = (-170)
 } err_t;
 
 #endif
