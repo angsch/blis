@@ -66,7 +66,7 @@ void bli_zgemm_rviv_4vx4
 
 	// Extract vector-length dependent mr, nr that are fixed at configure time.
 	const inc_t mr = bli_cntx_get_blksz_def_dt( BLIS_DCOMPLEX, BLIS_MR, cntx );
-	const inc_t nr = 4;
+	const inc_t nr = 6;
 
 	GEMM_UKR_SETUP_CT( z, mr, nr, false );
 

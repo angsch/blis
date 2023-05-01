@@ -48,30 +48,46 @@ void bli_cntx_init_rv64iv( cntx_t* cntx )
 	// which allows VLEN = 32 bits. Here, we assume VLEN >= 128 and otherwise
 	// fall back to the reference kernels.
 	const uint32_t v = get_vlenb() / sizeof(float);
+	const bool is_wide_vector = v >= 16;
 
 	if ( v >= 4 )
 	{
-		const uint32_t mr_s = 4 * v;
-		const uint32_t mr_d = 2 * v;
+		const uint32_t mr_s = is_wide_vector ? 2 * v : 4 * v;
+		const uint32_t mr_d = is_wide_vector ?     v : 2 * v;
 		const uint32_t mr_c = 2 * v;
 		const uint32_t mr_z = v;
 
-		// TODO: Register different kernels based on the value
-		// of v to avoid MC becoming too big. (e.g. 2vx8)
-
 		// Update the context with optimized native gemm micro-kernels.
-		bli_cntx_set_ukrs
-		(
-		  cntx,
+		if (is_wide_vector)
+		{
+			bli_cntx_set_ukrs
+			(
+			cntx,
 
-		  // level-3
-		  BLIS_GEMM_UKR, BLIS_FLOAT,    bli_sgemm_rviv_4vx4,
-		  BLIS_GEMM_UKR, BLIS_DOUBLE,   bli_dgemm_rviv_4vx4,
-		  BLIS_GEMM_UKR, BLIS_SCOMPLEX, bli_cgemm_rviv_4vx4,
-		  BLIS_GEMM_UKR, BLIS_DCOMPLEX, bli_zgemm_rviv_4vx4,
+			// level-3
+			BLIS_GEMM_UKR, BLIS_FLOAT,    bli_sgemm_rviv_2vx10,
+			BLIS_GEMM_UKR, BLIS_DOUBLE,   bli_dgemm_rviv_2vx10,
+			BLIS_GEMM_UKR, BLIS_SCOMPLEX, bli_cgemm_rviv_4vx4,
+			BLIS_GEMM_UKR, BLIS_DCOMPLEX, bli_zgemm_rviv_4vx4,
 
-		  BLIS_VA_END
-		);
+			BLIS_VA_END
+			);
+		}
+		else {
+			bli_cntx_set_ukrs
+			(
+			cntx,
+
+			// level-3
+			BLIS_GEMM_UKR, BLIS_FLOAT,    bli_sgemm_rviv_4vx4,
+			BLIS_GEMM_UKR, BLIS_DOUBLE,   bli_dgemm_rviv_4vx4,
+			BLIS_GEMM_UKR, BLIS_SCOMPLEX, bli_cgemm_rviv_4vx4,
+			BLIS_GEMM_UKR, BLIS_DCOMPLEX, bli_zgemm_rviv_4vx4,
+
+			BLIS_VA_END
+			);
+		}
+
 
 		// Update the context with storage preferences.
 		bli_cntx_set_ukr_prefs
@@ -89,11 +105,21 @@ void bli_cntx_init_rv64iv( cntx_t* cntx )
 
 		// Initialize level-3 blocksize objects with architecture-specific values.
 		//                                              s        d        c        z
-		bli_blksz_init_easy( &blkszs[ BLIS_MR ],     mr_s,    mr_d,    mr_c,    mr_z );
-		bli_blksz_init_easy( &blkszs[ BLIS_NR ],        4,       4,       4,       4 );
-		bli_blksz_init_easy( &blkszs[ BLIS_MC ],  20*mr_s, 20*mr_d, 60*mr_c, 30*mr_z );
-		bli_blksz_init_easy( &blkszs[ BLIS_KC ],      640,     320,     320,     160 );
-		bli_blksz_init_easy( &blkszs[ BLIS_NC ],     3072,    3072,    3072,    3072 );
+		if (is_wide_vector)
+		{
+			bli_blksz_init_easy( &blkszs[ BLIS_MR ],     mr_s,    mr_d,    mr_c,    mr_z );
+			bli_blksz_init_easy( &blkszs[ BLIS_NR ],       10,      10,       6,       6 );
+			bli_blksz_init_easy( &blkszs[ BLIS_MC ],  12*mr_s, 12*mr_d, 20*mr_c, 10*mr_z );
+			bli_blksz_init_easy( &blkszs[ BLIS_KC ],      360,     240,     240,     160 );
+			bli_blksz_init_easy( &blkszs[ BLIS_NC ],     1080,    1080,     600,     600 );
+		}
+		else {
+			bli_blksz_init_easy( &blkszs[ BLIS_MR ],     mr_s,    mr_d,    mr_c,    mr_z );
+			bli_blksz_init_easy( &blkszs[ BLIS_NR ],        4,       4,       6,       6 );
+			bli_blksz_init_easy( &blkszs[ BLIS_MC ],  20*mr_s, 20*mr_d, 40*mr_c, 20*mr_z );
+			bli_blksz_init_easy( &blkszs[ BLIS_KC ],      640,     320,     320,     160 );
+			bli_blksz_init_easy( &blkszs[ BLIS_NC ],     3072,    3072,    3072,    3072 );
+		}
 
 		// Update the context with the current architecture's register and cache
 		// blocksizes (and multiples) for native execution.
