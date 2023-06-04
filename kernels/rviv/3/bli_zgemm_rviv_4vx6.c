@@ -32,13 +32,49 @@
 
 */
 
-#define REALNAME bli_zgemm_rviv_asm_4vx4
-#define DATASIZE 16
-#define VTYPE e64
-#define FLOAD fld
-#define FZERO(fr) fcvt.d.w fr, x0
-#define FEQ feq.d
-#define VLE vlseg2e64.v
-#define VSE vsseg2e64.v
+#include "bli_rviv_utils.h"
 
-#include "bli_czgemm_rviv_asm_4vx4.h"
+void bli_zgemm_rviv_asm_4vx6
+    (
+             intptr_t   k,
+       const void*      alpha,
+       const void*      a,
+       const void*      b,
+       const void*      beta,
+             void*      c, intptr_t rs_c, intptr_t cs_c
+    );
+
+
+void bli_zgemm_rviv_4vx6
+     (
+             dim_t      m,
+             dim_t      n,
+             dim_t      k,
+       const void*      alpha,
+       const void*      a,
+       const void*      b,
+       const void*      beta,
+             void*      c, inc_t rs_c, inc_t cs_c,
+             auxinfo_t* data,
+       const cntx_t*    cntx
+     )
+{
+	// The assembly kernels always take native machine-sized integer arguments.
+	// dim_t and inc_t are normally defined as being machine-sized. If larger, assert.
+	bli_static_assert( sizeof(dim_t) <= sizeof(intptr_t) &&
+	                   sizeof(inc_t) <= sizeof(intptr_t) );
+
+	// Extract vector-length dependent mr, nr that are fixed at configure time.
+	const inc_t mr = bli_cntx_get_blksz_def_dt( BLIS_DCOMPLEX, BLIS_MR, cntx );
+	const inc_t nr = 6;
+
+	GEMM_UKR_SETUP_CT( z, mr, nr, false );
+
+	// The kernel assumes rs_c == 1, and the context should not deviate from it.
+	assert( rs_c == 1 );
+
+	bli_zgemm_rviv_asm_4vx6( k, alpha, a, b, beta, c,
+	                         get_vlenb() * 2, cs_c * sizeof(dcomplex) );
+
+	GEMM_UKR_FLUSH_CT( z );
+}

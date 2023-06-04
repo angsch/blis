@@ -98,7 +98,7 @@ script:
     $DIST_PATH/travis/do_riscv.sh "$CONF";
     export CC=$DIST_PATH/../toolchain/riscv/bin/riscv64-unknown-linux-gnu-gcc;
     export CXX=$DIST_PATH/../toolchain/riscv/bin/riscv64-unknown-linux-gnu-g++;
-    export TESTSUITE_WRAPPER="$DIST_PATH/../toolchain/qemu-riscv64 -cpu rv64,vext_spec=v1.0,v=true,vlen=128 -B 0x100000";
+    export TESTSUITE_WRAPPER="$DIST_PATH/../toolchain/qemu-riscv64 -cpu rv64,vext_spec=v1.0,v=true,vlen=512 -B 0x100000";
   fi
 - if [ "$CONF" = "rv32iv" ]; then
     $DIST_PATH/travis/do_riscv.sh "$CONF";

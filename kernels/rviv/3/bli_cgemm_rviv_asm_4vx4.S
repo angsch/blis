@@ -33,7 +33,7 @@
 
 */
 
-#define REALNAME bli_cgemm_rviv_asm_4vx4
+#define REALNAME bli_cgemm_rviv_asm_4vx6
 #define DATASIZE 8
 #define VTYPE e32
 #define FLOAD flw
@@ -42,4 +42,4 @@
 #define VLE vlseg2e32.v
 #define VSE vsseg2e32.v
 
-#include "bli_czgemm_rviv_asm_4vx4.h"
+#include "bli_czgemm_rviv_asm_4vx6.h"

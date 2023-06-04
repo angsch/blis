@@ -64,8 +64,8 @@ void bli_cntx_init_rv32iv( cntx_t* cntx )
 		  // level-3
 		  BLIS_GEMM_UKR, BLIS_FLOAT,    bli_sgemm_rviv_4vx4,
 		  BLIS_GEMM_UKR, BLIS_DOUBLE,   bli_dgemm_rviv_4vx4,
-		  BLIS_GEMM_UKR, BLIS_SCOMPLEX, bli_cgemm_rviv_4vx4,
-		  BLIS_GEMM_UKR, BLIS_DCOMPLEX, bli_zgemm_rviv_4vx4,
+		  BLIS_GEMM_UKR, BLIS_SCOMPLEX, bli_cgemm_rviv_4vx6,
+		  BLIS_GEMM_UKR, BLIS_DCOMPLEX, bli_zgemm_rviv_4vx6,
 
 		  BLIS_VA_END
 		);
@@ -87,8 +87,8 @@ void bli_cntx_init_rv32iv( cntx_t* cntx )
 		// Initialize level-3 blocksize objects with architecture-specific values.
 		//                                              s        d        c        z
 		bli_blksz_init_easy( &blkszs[ BLIS_MR ],     mr_s,    mr_d,    mr_c,    mr_z );
-		bli_blksz_init_easy( &blkszs[ BLIS_NR ],        4,       4,       4,       4 );
-		bli_blksz_init_easy( &blkszs[ BLIS_MC ],  20*mr_s, 20*mr_d, 60*mr_c, 30*mr_z );
+		bli_blksz_init_easy( &blkszs[ BLIS_NR ],        4,       4,       6,       6 );
+		bli_blksz_init_easy( &blkszs[ BLIS_MC ],  20*mr_s, 20*mr_d, 40*mr_c, 20*mr_z );
 		bli_blksz_init_easy( &blkszs[ BLIS_KC ],      640,     320,     320,     160 );
 		bli_blksz_init_easy( &blkszs[ BLIS_NC ],     3072,    3072,    3072,    3072 );
 

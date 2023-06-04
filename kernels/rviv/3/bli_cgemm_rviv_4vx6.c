@@ -34,7 +34,7 @@
 
 #include "bli_rviv_utils.h"
 
-void bli_zgemm_rviv_asm_4vx4
+void bli_cgemm_rviv_asm_4vx6
     (
              intptr_t   k,
        const void*      alpha,
@@ -44,8 +44,7 @@ void bli_zgemm_rviv_asm_4vx4
              void*      c, intptr_t rs_c, intptr_t cs_c
     );
 
-
-void bli_zgemm_rviv_4vx4
+void bli_cgemm_rviv_4vx6
      (
              dim_t      m,
              dim_t      n,
@@ -65,16 +64,16 @@ void bli_zgemm_rviv_4vx4
 	                   sizeof(inc_t) <= sizeof(intptr_t) );
 
 	// Extract vector-length dependent mr, nr that are fixed at configure time.
-	const inc_t mr = bli_cntx_get_blksz_def_dt( BLIS_DCOMPLEX, BLIS_MR, cntx );
+	const inc_t mr = bli_cntx_get_blksz_def_dt( BLIS_SCOMPLEX, BLIS_MR, cntx );
 	const inc_t nr = 6;
 
-	GEMM_UKR_SETUP_CT( z, mr, nr, false );
+	GEMM_UKR_SETUP_CT( c, mr, nr, false );
 
 	// The kernel assumes rs_c == 1, and the context should not deviate from it.
 	assert( rs_c == 1 );
 
-	bli_zgemm_rviv_asm_4vx4( k, alpha, a, b, beta, c,
-	                         get_vlenb() * 2, cs_c * sizeof(dcomplex) );
+	bli_cgemm_rviv_asm_4vx6( k, alpha, a, b, beta, c,
+	                         get_vlenb() * 2, cs_c * sizeof(scomplex) );
 
-	GEMM_UKR_FLUSH_CT( z );
+	GEMM_UKR_FLUSH_CT( c );
 }
